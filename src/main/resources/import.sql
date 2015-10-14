@@ -1,0 +1,1 @@
+//dummy SQL fürs initiale Speichern von Daten
