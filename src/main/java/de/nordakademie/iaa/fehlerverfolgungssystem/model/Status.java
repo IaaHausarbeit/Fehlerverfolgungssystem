@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * Enumeration aller vorhandenen Status.
- * Dies soll eine einfachere und allgemeingültige Handhabung der Status ermöglichen
+ * Dies soll eine einfachere und allgemeingÃ¼ltige Handhabung der Status ermÃ¶glichen
  */
 public enum Status {
 
@@ -26,9 +26,9 @@ public enum Status {
      */
     DECLINED(4, "Abgelehnt"),
     /**
-     * Wiedereröffnet
+     * WiedererÃ¶ffnet
      */
-    REOPENED(5, "Wiedereröffnet"),
+    REOPENED(5, "WiedererÃ¶ffnet"),
     /**
      * Geschlossen
      */
