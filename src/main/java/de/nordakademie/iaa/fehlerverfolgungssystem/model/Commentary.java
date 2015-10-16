@@ -9,6 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 public class Commentary {
+    //TODO serializable generieren
     private Long id;
 
     /**

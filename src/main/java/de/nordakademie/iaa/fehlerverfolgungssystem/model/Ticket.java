@@ -9,6 +9,7 @@ import java.util.List;
  */
 @Entity
 public class Ticket implements Serializable {
+    //TODO serializable generieren
 
     /**
      * ID des Tickets

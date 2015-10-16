@@ -9,6 +9,7 @@ import javax.persistence.Id;
  * Klasse für einen Entwickler
  */
 public class Developer {
+    //TODO serializable generieren
     /**
      * Mitarbeiternummer
      */
