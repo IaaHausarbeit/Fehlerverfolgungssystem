@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 public class Ticket implements Serializable {
     //TODO serializable generieren
+    //TODO Datum letzte Änderung
 
     /**
      * ID des Tickets

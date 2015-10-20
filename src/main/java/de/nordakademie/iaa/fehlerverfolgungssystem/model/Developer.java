@@ -10,6 +10,7 @@ import javax.persistence.Id;
  */
 public class Developer {
     //TODO serializable generieren
+    //TODO Passwort einbauen. Klartext oder gibt es da eine andere Lösung?
     /**
      * Mitarbeiternummer
      */
