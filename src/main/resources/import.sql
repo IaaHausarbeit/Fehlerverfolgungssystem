@@ -1,1 +1,1 @@
-//dummy SQL fürs initiale Speichern von Daten
+INSERT INTO DEVELOPER VALUES ('testnick', 'Klarer Himmel', 'himmel@himmel.de', 'password')

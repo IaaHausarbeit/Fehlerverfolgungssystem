@@ -151,31 +151,31 @@ public class Ticket implements Serializable {
 */
 
 
-    @OneToMany
-    public Commentary getCommentary() {
-        return commentary;
-    }
-
-    public void setCommentary(Commentary commentary) {
-        this.commentary = commentary;
-    }
-
-    @OneToOne(optional = false)
-    public Developer getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Developer creator) {
-        this.creator = creator;
-    }
-
-    @OneToOne(optional = true)
-    public Developer getCurrentWorker() {
-        return currentWorker;
-    }
-
-    public void setCurrentWorker(Developer currentWorker) {
-        this.currentWorker = currentWorker;
-    }
+//    @OneToMany
+//    public Commentary getCommentary() {
+//        return commentary;
+//    }
+//
+//    public void setCommentary(Commentary commentary) {
+//        this.commentary = commentary;
+//    }
+//
+//    @OneToOne(optional = false)
+//    public Developer getCreator() {
+//        return creator;
+//    }
+//
+//    public void setCreator(Developer creator) {
+//        this.creator = creator;
+//    }
+//
+//    @OneToOne(optional = true)
+//    public Developer getCurrentWorker() {
+//        return currentWorker;
+//    }
+//
+//    public void setCurrentWorker(Developer currentWorker) {
+//        this.currentWorker = currentWorker;
+//    }
 }
 

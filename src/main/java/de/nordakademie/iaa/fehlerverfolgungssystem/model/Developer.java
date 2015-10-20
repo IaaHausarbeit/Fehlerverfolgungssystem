@@ -29,6 +29,20 @@ public class Developer {
      */
     private String eMailAddress;
 
+    /**
+     * Rechte fürs Login
+     */
+    public String authority;
+
+    @Column(nullable = false, columnDefinition ="VARCHAR2(45) default='ROLE_ADMIN")
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
     @Column(nullable = false)
     public String getName() {
         return name;

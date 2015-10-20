@@ -14,8 +14,10 @@ public class Commentary {
 
     /**
      * Verfasser des Kommentars
+     * hier wird der Nickname übergeben, muss dann beim Setzen und ziehen beachtet werden, dass es gegen einen
+     * validen Developer ausgetauscht wird {@see Developer}
      */
-    private Developer creator;
+    private String creator;
 
     /**
      * Datum des Kommentars
@@ -38,11 +40,11 @@ public class Commentary {
     }
 
     @Column(nullable = false)
-    public Developer getCreator() {
+    public String getCreator() {
         return creator;
     }
 
-    public void setCreator(Developer creator) {
+    public void setCreator(String creator) {
         this.creator = creator;
     }
 
