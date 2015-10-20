@@ -1,20 +1,18 @@
 package de.nordakademie.iaa.fehlerverfolgungssystem.model;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * Klasse für einen Entwickler
  */
 public class Developer {
     //TODO serializable generieren
-    //TODO Passwort einbauen. Klartext oder gibt es da eine andere Lösung?
+
     /**
-     * Mitarbeiternummer: Wird die wirklich benötigt, wenn wir den nickmane unique setzen?
+     * Password
+     * TODO zuerst Klartext und am Ende kann man noch n Hashwert draus machen oder sowas schickes
      */
-    private Long id;
+    private String password;
 
     /**
      * Name des Enwticklers
@@ -30,16 +28,6 @@ public class Developer {
      * E-Mail-Adresse des Entwicklers
      */
     private String eMailAddress;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Column(nullable = false)
     public String getName() {
@@ -66,5 +54,14 @@ public class Developer {
 
     public void seteMailAddress(String eMailAddress) {
         this.eMailAddress = eMailAddress;
+    }
+
+    @Column(nullable = false)
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
