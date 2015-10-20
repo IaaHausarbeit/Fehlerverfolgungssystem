@@ -12,7 +12,7 @@ public class Developer {
     //TODO serializable generieren
     //TODO Passwort einbauen. Klartext oder gibt es da eine andere Lösung?
     /**
-     * Mitarbeiternummer
+     * Mitarbeiternummer: Wird die wirklich benötigt, wenn wir den nickmane unique setzen?
      */
     private Long id;
 

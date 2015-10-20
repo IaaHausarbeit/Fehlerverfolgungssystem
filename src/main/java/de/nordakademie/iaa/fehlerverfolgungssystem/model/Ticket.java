@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 public class Ticket implements Serializable {
     //TODO serializable generieren
-    //TODO Datum letzte Änderung
 
     /**
      * ID des Tickets
@@ -38,6 +37,11 @@ public class Ticket implements Serializable {
     private Long createDateTimestamp;
 
     /**
+     * Bearbeitungsdatum
+     */
+    private Long changeDateTimestamp;
+
+    /**
      * Titel des Tickets (Kurzüberschrift)
      */
     private String titel;
@@ -47,10 +51,16 @@ public class Ticket implements Serializable {
      */
     private String description;
 
+/*    *//**
+     * Liste aller Kommentare am Ticket --> durch onetomany ohne Liste realisieren
+     *//*
+    private List<Commentary> commentaryList;*/
+
     /**
-     * Liste aller Kommentare am Ticket
+     * Kommentar
      */
-    private List<Commentary> commentaryList;
+    private Commentary commentary;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -71,15 +81,15 @@ public class Ticket implements Serializable {
         this.status = status;
     }
 
-    @Column(nullable = false)
+/*    @Column(nullable = false)
     public Developer getCreator() {
         return creator;
     }
 
     public void setCreator(Developer creator) {
         this.creator = creator;
-    }
-
+    }*/
+/*
     @Column
     public Developer getCurrentWorker() {
         return currentWorker;
@@ -87,6 +97,15 @@ public class Ticket implements Serializable {
 
     public void setCurrentWorker(Developer currentWorker) {
         this.currentWorker = currentWorker;
+    }*/
+
+    @Column(nullable = false)
+    public Long getChangeDateTimestamp() {
+        return changeDateTimestamp;
+    }
+
+    public void setChangeDateTimestamp(Long changeDateTimestamp){
+        this.changeDateTimestamp = changeDateTimestamp;
     }
 
     @Column(nullable = false)
@@ -117,6 +136,9 @@ public class Ticket implements Serializable {
     }
 
 
+
+/*  durch OneToMany realisieren --> keine Liste nötig
+
     public List<Commentary> getCommentaryList() {
         //TODO Kommentare beziehen
         return commentaryList;
@@ -125,6 +147,35 @@ public class Ticket implements Serializable {
     public void setCommentaryList(List<Commentary> commentaryList) {
         //TODO Kommentare hinzufügen
         this.commentaryList = commentaryList;
+    }
+*/
+
+
+    @OneToMany
+    public Commentary getCommentary() {
+        return commentary;
+    }
+
+    public void setCommentary(Commentary commentary) {
+        this.commentary = commentary;
+    }
+
+    @OneToOne(optional = false)
+    public Developer getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Developer creator) {
+        this.creator = creator;
+    }
+
+    @OneToOne(optional = true)
+    public Developer getCurrentWorker() {
+        return currentWorker;
+    }
+
+    public void setCurrentWorker(Developer currentWorker) {
+        this.currentWorker = currentWorker;
     }
 }
 
