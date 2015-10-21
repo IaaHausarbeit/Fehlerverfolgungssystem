@@ -16,12 +16,12 @@
             <th>Beschreibung</th>
             <th>Autor</th>
             <th>angelegt</th>
-            <th>letzte Änderung</th>
+            <th>letzte &Auml;nderung</th>
         </tr>
         <!--Mal sehen, was hier noch so für Parameter rein müssen....-->
-        <tr ng-repeat="ticket in model.ticket | orderBy:['building', 'roomNumber']"
+        <tr ng-repeat="ticket in model.ticket | orderBy:['id', 'titel']"
             ng-click="ticketController.selectTicket(ticket)" ng-dblclick="ticketController.editTicket(ticket)"
-            ng-class="{selectedRoom:(room == model.selectedRoom)}">
+            ng-class="{selectedTicket:(ticket == model.selectedTicket)}">
             <td>{{ticket.id}}</td>
             <td>{{ticket.titel}}</td>
             <td>{{ticket.status}}</td>
