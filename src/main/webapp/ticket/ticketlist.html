@@ -1,0 +1,34 @@
+<section>
+    <h2>Liste der Tickets</h2>
+
+    <p></p>
+
+    <input type="submit" value="anlegen" ng-click="ticketController.newTicket()"/>
+    <input type="submit" value="ansicht" ng-click="ticketController.editTicket()"/>
+
+    <p></p>
+
+    <table>
+        <tr>
+            <th>Nr.</th>
+            <th>Bezeichnung</th>
+            <th>Status</th>
+            <th>Beschreibung</th>
+            <th>Autor</th>
+            <th>angelegt</th>
+            <th>letzte Änderung</th>
+        </tr>
+        <!--Mal sehen, was hier noch so für Parameter rein müssen....-->
+        <tr ng-repeat="ticket in model.ticket | orderBy:['building', 'roomNumber']"
+            ng-click="ticketController.selectTicket(ticket)" ng-dblclick="ticketController.editTicket(ticket)"
+            ng-class="{selectedRoom:(room == model.selectedRoom)}">
+            <td>{{ticket.id}}</td>
+            <td>{{ticket.titel}}</td>
+            <td>{{ticket.status}}</td>
+            <td>{{ticket.description}}</td>
+            <td>{{ticket.creator}}</td>
+            <td>{{ticket.createDateTimestamp}}</td>
+            <td>{{ticket.changeDateTimestamp}}</td>
+        </tr>
+    </table>
+</section>
