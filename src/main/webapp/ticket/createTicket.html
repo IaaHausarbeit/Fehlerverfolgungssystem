@@ -10,14 +10,25 @@
         <tr>
             <td>Beschreibung</td>
            <!-- Hier soll noch die Höhe angepasst werden: muss ich mir noch anschauen!!-->
-            <td><input type="text"/></td>
+            <td>
+                <textarea rows="4" cols="100">
+                </textarea>
+            </td>
+
+           <!-- <td><input type="text"/></td>-->
+        </tr>
+
+        <!--Buttons-->
+        <tr>
+            <td></td>
+            <td><input type="submit" value ="anlegen" ng-click="ticketController.createTicket()"/></td>
         </tr>
 
         <tr>
-            <!--Buttons-->
-            <td><input type="submit" value ="anlegen" ng-click="ticketController.createTicket()"/></td>
+            <td></td>
             <td> <input type="submit" value="abbrechen" ng-click="formController.ticketlist()"/> </td>
         </tr>
+
 
     </table>
 
