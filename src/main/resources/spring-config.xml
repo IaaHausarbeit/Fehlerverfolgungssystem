@@ -67,13 +67,13 @@
     </aop:config>
 
     <!-- DAOs -->
-    <!--<bean id="roomDAO" class="de.nordakademie.iaa.roommgmt.dao.RoomDAO"/>-->
+    <bean id="developerDAO" class="de.nordakademie.iaa.fehlerverfolgungssystem.dao.DeveloperDAO"/>
 
-    <!--<bean id="courseDAO" class="de.nordakademie.iaa.roommgmt.dao.CourseDAO"/>-->
+    <bean id="ticketDAO" class="de.nordakademie.iaa.fehlerverfolgungssystem.dao.TicketDAO"/>
 
-    <!--<bean id="lectureDAO" class="de.nordakademie.iaa.roommgmt.dao.LectureDAO"/>-->
+    <bean id="commentaryDAO" class="de.nordakademie.iaa.fehlerverfolgungssystem.dao.CommentaryDAO"/>
 
-    <!--&lt;!&ndash; Services &ndash;&gt;-->
+    <!-- Services -->
     <!--<bean id="roomService" class="de.nordakademie.iaa.roommgmt.service.RoomServiceImpl"/>-->
 
     <!--<bean id="courseService" class="de.nordakademie.iaa.roommgmt.service.CourseServiceImpl"/>-->

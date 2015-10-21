@@ -3,9 +3,11 @@ package de.nordakademie.iaa.fehlerverfolgungssystem.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Entitäts-Klasse für ein Ticket
+ * createy by Paul
  */
 @Entity
 public class Ticket implements Serializable {
@@ -24,12 +26,12 @@ public class Ticket implements Serializable {
     /**
      * Autor des Tickets
      */
-    private Developer creator;
+    private String creator;
 
     /**
      * Bearbeitender Entwickler
      */
-    private Developer currentWorker;
+    private String currentWorker;
 
     /**
      * Erstellungsdatum
@@ -51,19 +53,17 @@ public class Ticket implements Serializable {
      */
     private String description;
 
-/*    *//**
-     * Liste aller Kommentare am Ticket --> durch onetomany ohne Liste realisieren
-     *//*
-    private List<Commentary> commentaryList;*/
-
     /**
-     * Kommentar
+     * Liste aller Kommentare am Ticket --> durch onetomany ohne Liste realisieren
      */
-    private Commentary commentary;
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="ticket_id")
+    private Set<Commentary> commentaryList;
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ticket_id")
     public Long getId() {
         return id;
     }
@@ -81,30 +81,12 @@ public class Ticket implements Serializable {
         this.status = status;
     }
 
-/*    @Column(nullable = false)
-    public Developer getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Developer creator) {
-        this.creator = creator;
-    }*/
-/*
-    @Column
-    public Developer getCurrentWorker() {
-        return currentWorker;
-    }
-
-    public void setCurrentWorker(Developer currentWorker) {
-        this.currentWorker = currentWorker;
-    }*/
-
     @Column(nullable = false)
     public Long getChangeDateTimestamp() {
         return changeDateTimestamp;
     }
 
-    public void setChangeDateTimestamp(Long changeDateTimestamp){
+    public void setChangeDateTimestamp(Long changeDateTimestamp) {
         this.changeDateTimestamp = changeDateTimestamp;
     }
 
@@ -135,47 +117,23 @@ public class Ticket implements Serializable {
         this.description = description;
     }
 
-
-
-/*  durch OneToMany realisieren --> keine Liste nötig
-
-    public List<Commentary> getCommentaryList() {
-        //TODO Kommentare beziehen
-        return commentaryList;
+    @Column(nullable = false)
+    public String getCreator() {
+        return creator;
     }
 
-    public void setCommentaryList(List<Commentary> commentaryList) {
-        //TODO Kommentare hinzufügen
-        this.commentaryList = commentaryList;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
-*/
 
+    @Column
+    public String getCurrentWorker() {
+        return currentWorker;
+    }
 
-//    @OneToMany
-//    public Commentary getCommentary() {
-//        return commentary;
-//    }
-//
-//    public void setCommentary(Commentary commentary) {
-//        this.commentary = commentary;
-//    }
-//
-//    @OneToOne(optional = false)
-//    public Developer getCreator() {
-//        return creator;
-//    }
-//
-//    public void setCreator(Developer creator) {
-//        this.creator = creator;
-//    }
-//
-//    @OneToOne(optional = true)
-//    public Developer getCurrentWorker() {
-//        return currentWorker;
-//    }
-//
-//    public void setCurrentWorker(Developer currentWorker) {
-//        this.currentWorker = currentWorker;
-//    }
+    public void setCurrentWorker(String currentWorker) {
+        this.currentWorker = currentWorker;
+    }
+
 }
 

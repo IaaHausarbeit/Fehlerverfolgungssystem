@@ -1,7 +1,5 @@
 package de.nordakademie.iaa.fehlerverfolgungssystem.model;
 
-import org.aspectj.lang.annotation.control.CodeGenerationHint;
-
 import javax.persistence.*;
 
 /**
@@ -28,6 +26,14 @@ public class Commentary {
      * Kommentartext
      */
     private String text;
+
+    /**
+     * Ticket, an dem der Kommentar geschrieben wurde
+     */
+    @ManyToOne
+    @JoinColumn(name = "FK_TICKET")
+    private Ticket ticket;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -65,6 +71,5 @@ public class Commentary {
     public void setText(String text) {
         this.text = text;
     }
-
 
 }
