@@ -94,8 +94,9 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
      * Starts the editing of the ticket.
      * @param selected The ticket to be edited.
      */
-    this.editTicket = function (selected) {
-        this.selectTicket(selected);
+    this.editTicket = function (/*selected*/) {
+        //TODO
+/*        this.selectTicket(selected);*/
         $scope.switchToScreen($scope.screens.editScreen);
     };
 
@@ -103,8 +104,9 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
      * Starts the creation of a new ticket.
      */
     this.newTicket = function () {
-        $scope.model.selectedTicket = new Ticket(/*hier müssen die default parameter rein, aber ich weiß noch nicht,
-        wie ich den Status, angemeldeten Benutzer und Timestamp bekomme*/);
+        //TODO
+/*        $scope.model.selectedTicket = new Ticket(/!*hier müssen die default parameter rein, aber ich weiß noch nicht,
+        wie ich den Status, angemeldeten Benutzer und Timestamp bekomme*!/);*/
         $scope.switchToScreen($scope.screens.editTicket);
     };
 
@@ -129,14 +131,16 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
 
     // List the current tickets.
     ticketService.listTicketsWithPromise()
-        .success(function (data, status, headers, config) {
+        .success(function (data) {
             $scope.model.tickets = data;
         })
-        .error(function (data, status, headers, config) {
+        .error(function () {
             alert("an error occured while loading");
         });
 }]);
 
+
+//TODO!!
 // Set up the form controller.
 controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', function ($scope, Ticket, ticketService) {
     // Object containing the error messages.
