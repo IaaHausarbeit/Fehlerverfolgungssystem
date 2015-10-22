@@ -1,0 +1,13 @@
+<section ng-controller="startController as startController">
+ <!--   <h1>Willkommen im Ticketverfolgungssystem</h1>-->
+
+    <table>
+        <tr>Bitte w&auml;hlen Sie aus, ob Sie sich anmelden oder neu registrieren m&ouml;chten.</tr>
+<!--        <td><input type="button" onclick="location.href='ticket/ticketlist.html';" value="Login" /> </td>
+        <td><input type="button" onclick="location.href='registration.html';" value="Registrieren" /> </td>-->
+
+        <td><input type="submit" ng-click="startController.login()" value="Login"/></td>
+        <td><input type="submit" ng-click="startController.registration()" value="Registrieren"/></td>
+
+    </table>
+</section>

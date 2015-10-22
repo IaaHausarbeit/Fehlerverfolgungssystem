@@ -1,0 +1,33 @@
+<section ng-controller="regController as regController">
+    <h2>Registrieren</h2>
+
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text"/></td>
+        </tr>
+        <tr>
+            <td>Benutzername:</td>
+            <td><input type="text"/></td>
+        </tr>
+        <tr>
+            <td>E-Mail:</td>
+            <td><input type="email"/></td>
+        </tr>
+        <tr>
+            <td>Passwort:</td>
+            <td><input type="password"/></td>
+        </tr>
+        <tr>
+            <td>wiederholen:</td>
+            <td><input type="password"/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" ng-click="regController.start()" value="Abbrechen"/></td>
+
+            <!--//TODO: prüfen, ob Benutzername noch nicht vergeben und PW = PW-->
+            <td><input type="submit" ng-click="regController.registration()" value="Registrieren"/></td>
+        </tr>
+
+    </table>
+</section>

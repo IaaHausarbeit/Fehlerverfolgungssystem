@@ -1,0 +1,69 @@
+<section>
+    <h2>Detailansicht</h2>
+
+    <!--ng-click ist noch falsch-->
+    <input type="submit" ng-click="formController.switchToScreen(ticketlistScreen)" value="zur&uuml;ck">
+
+    <table>
+        <tr>
+            <td>Bezeichnung:</td>
+            <td>{{ticket.titel}}</td>
+        </tr>
+
+        <tr>
+            <td>Beschreibung:</td>
+            <!-- Hier soll noch die Höhe angepasst werden: muss ich mir noch anschauen!!-->
+            <td><textarea rows="4" cols="25" readonly>{{ticket.description}}</textarea></td>
+        </tr>
+        <tr>
+            <td>Verfasser:</td>
+            <td>{{ticket.creator}}</td>
+        </tr>
+        <tr>
+            <td>Bearbeiter:</td>
+            <td>{{ticket.currentWorker}}</td>
+        </tr>
+        <tr>
+            <td>Status:</td>
+            <td>{{ticket.status}}</td>
+        </tr>
+        <tr>
+            <td>Kommentar:</td>
+            <!-- Hier soll noch die Höhe angepasst werden: muss ich mir noch anschauen!!-->
+            <td><textarea rows="4" cols="25"></textarea></td>
+        </tr>
+
+        <tr>
+            <td>
+                <select name="status">
+                    <option>in Bearbeitung</option>
+                    <option>behoben</option>
+                    <option>abgelehnt</option>
+                    <option>geschlossen</option>
+                    <option>wiederer&ouml;ffnet</option>
+                </select>
+            </td>
+            <td><input type="submit" value ="&uuml;berf&uuml;hren" ng-click="ticketController.createTicket()"/></td>
+        </tr>
+    </table>
+
+    <p></p>
+    <p></p>
+
+    <table>
+        <tr>
+            <th>timestamp</th>
+            <th>Autor</th>
+            <th>Kommentar</th>
+        </tr>
+        <!--TODO: Mal sehen, was hier noch so für Parameter rein müssen....-->
+        <tr ng-repeat="ticket in model.ticket | orderBy:['id', 'titel']"
+            ng-click="ticketController.selectTicket(ticket)" ng-dblclick="ticketController.editTicket(ticket)"
+            ng-class="{selectedTicket:(ticket == model.selectedTicket)}">
+            <td>{{commentary.date}}</td>
+            <td>{{commentary.creator}}</td>
+            <td>{{commentary.text}}</td>
+        </tr>
+    </table>
+
+</section>

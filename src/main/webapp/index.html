@@ -5,15 +5,13 @@
     <title>Fehlerverfolgungssystem</title>
     <script type="application/javascript" src="bower_components/angular/angular.js"></script>
     <script type="application/javascript" src="js/application.js"></script>
+    <script type="application/javascript" src="js/controllers.js"></script>
+    <script type="application/javascript" src="js/resources.js"></script>
+    <script type="application/javascript" src="js/services.js"></script>
 </head>
 <body ng-controller="mainController as mainController">
-    <h1>Willkommen im Ticketverfolgungssystem</h1>
-
-    <table>
-        <tr>Bitte wählen Sie aus, ob Sie sich anmelden oder neu registrieren möchten.</tr>
-        <td><input type="button" onclick="location.href='/ticket/ticketlist.html';" value="Login" /></td>
-        <td><input type="button" onclick="location.href='/registration.html';" value="Registrierne" /></td>
-    </table>
-
+<h1>Willkommen im Ticketverfolgungssystem!</h1>
+    <ng-include src="mainController.getCurrentScreenSource()"></ng-include>
 </body>
 </html>
+
