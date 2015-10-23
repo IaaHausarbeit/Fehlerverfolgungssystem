@@ -1,11 +1,11 @@
-<section>
+<section ng-controller="listController as listController">
     <form name="ticketForm" novalidate>
         <h2>Liste der Tickets</h2>
 
         <p></p>
 
-        <input type="submit" value="anlegen" ng-click="formController.switchToScreen(createScreen)"/>
-        <input type="submit" value="ansicht" ng-click="ticketController.editTicket()"/>
+        <input type="submit" value="anlegen" ng-click="listController.newTicket()"/>
+        <input type="submit" value="ansicht" ng-click="listController.editTicket()"/>
 
         <p></p>
 
@@ -20,10 +20,10 @@
                 <th>letzte &Auml;nderung</th>
             </tr>
             <!--TODO: Mal sehen, was hier noch so für Parameter rein müssen....-->
-            <tr ng-repeat="ticket in model.ticket | orderBy:['id', 'titel']"
-                ng-click="ticketController.selectTicket(ticket)" ng-dblclick="ticketController.editTicket(ticket)"
+            <tr ng-repeat="ticket in model.ticket"
+                ng-click="listController.selectTicket(ticket)" ng-dblclick="listController.editTicket(ticket)"
                 ng-class="{selectedTicket:(ticket == model.selectedTicket)}">
-                <td>{{ticket.id}}</td>
+                <td>{{ ticket.id }}</td>
                 <td>{{ticket.titel}}</td>
                 <td>{{ticket.status}}</td>
                 <td>{{ticket.description}}</td>
