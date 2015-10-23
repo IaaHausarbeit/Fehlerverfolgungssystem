@@ -26,7 +26,6 @@ public class TicketDAO {
      * @return Ticket zu der übergebenen ID
      */
     public Ticket getTicket(Long id) {
-        //TODO Kommentare noch hinzufügen
         return entityManager.find(Ticket.class, id);
     }
 
