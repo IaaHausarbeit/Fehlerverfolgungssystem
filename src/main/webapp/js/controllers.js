@@ -5,6 +5,10 @@
 
 var controllers = angular.module('controllers', ['resources', 'services']);
 
+/*TODO: regController!! Im Moment ruft der nur die Ticketlist auf, ohne Benutzername, E-Mail Adresse und PW
+abzugleichen und zu speichern.*/
+
+
 //Controller, um zwischen den Seiten hin und her zu springen!
 //TODO: Set up main controller.
 controllers.controller('mainController', ['$scope', function ($scope) {
@@ -12,7 +16,6 @@ controllers.controller('mainController', ['$scope', function ($scope) {
     $scope.screens = {
         startScreen: ['startScreen', 'start.html'],
         ticketlistScreen: ['ticketlistScreen', 'ticket/ticketlistScreen.html'],
-        createScreen: ['createScreen', 'ticket/createScreen.html'],
         editScreen: ['editScreen', 'ticket/editScreen.html'],
         registrationScreen: ['registrationScreen', 'registration.html']
     };
@@ -73,6 +76,8 @@ controllers.controller('regController', ['$scope', function ($scope) {
         $scope.switchToScreen($scope.screens.startScreen);
     }
     this.registration = function(){
+        //hier muss eine Funktion zum Speichern der Daten rein + Prüfung, ob PW = PW & Benutzername und E-Mail noch nicht vergeben
+        //Prüfung, ob PW = PW auch direkt mit Angular?
         $scope.switchToScreen($scope.screens.ticketlistScreen);
     }
 }]);
@@ -94,9 +99,8 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
      * Starts the editing of the ticket.
      * @param selected The ticket to be edited.
      */
-    this.editTicket = function (/*selected*/) {
-        //TODO
-/*        this.selectTicket(selected);*/
+    this.editTicket = function (selected) {
+        this.selectTicket(selected);
         $scope.switchToScreen($scope.screens.editScreen);
     };
 
@@ -105,29 +109,10 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
      */
     this.newTicket = function () {
         //TODO
-/*        $scope.model.selectedTicket = new Ticket(/!*hier müssen die default parameter rein, aber ich weiß noch nicht,
-        wie ich den Status, angemeldeten Benutzer und Timestamp bekomme*!/);*/
+        $scope.model.selectedTicket = new Ticket(/*hier müssen die default parameter rein, aber ich weiß noch nicht,
+        wie ich den Status, angemeldeten Benutzer und Timestamp bekomme*/);
         $scope.switchToScreen($scope.screens.editTicket);
     };
-
-/*  Löschen könnte später eventuell noch interessant sein
-    /!**
-     * Deletes the selected ticket.
-     * @param selected The room to be deleted.
-     *!/
-    this.deleteRoom = function () {
-        roomService.deleteRoomWithPromise($scope.model.selectedRoom)
-            .then(function (response) {
-                $scope.model.selectedRoom = null;
-                return roomService.listRoomsWithPromise();
-            })
-            .then(function (response) {
-                $scope.model.rooms = response.data;
-            })
-            .error(function (data, status, headers, config) {
-                alert("an error occured while deleting");
-            });
-    };*/
 
     // List the current tickets.
     ticketService.listTicketsWithPromise()
@@ -140,25 +125,26 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
 }]);
 
 
-//TODO!!
+//TODO!! Für Edit / Create
 // Set up the form controller.
 controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', function ($scope, Ticket, ticketService) {
     // Object containing the error messages.
     var messages = {
         errors: {
-            required: 'Please enter a value!',
-            number: 'Please enter a number!',
+            required: 'Please enter a value!'
+            /*number: 'Please enter a number!',
             min: 'The number is smaller than the minimum allowed!',
-            unknown: 'Please enter a valid value!'
+            unknown: 'Please enter a valid value!'*/
         }
     };
 
-    // Set up the form model. //TODO!!
+    // Set up the form model. //TODO angucken
     $scope.formModel = {
-        isEdit: $scope.model.selectedRoom.building && $scope.model.selectedRoom.roomNumber,
-        formTicket: new Room($scope.model.selectedRoom.id, $scope.model.selectedRoom.building,
-            $scope.model.selectedRoom.roomNumber, $scope.model.selectedRoom.seats,
-            $scope.model.selectedRoom.beamerPresent)
+        isEdit: $scope.model.selectedTicket.titel && $scope.model.selectedTicket.description,
+        formTicket: new Ticket($scope.model.selectedTicket.id, $scope.model.selectedTicket.status,
+                    $scope.model.selectedTicket.creator, $scope.model.selectedTicket.currentWorker,
+                    $scope.model.selectedTicket.createDateTimestamp, $scope.model.selectedTicket.changeDateTimestamp,
+                    $scope.model.selectedTicket.titel, $scope.model.selectedTicket.description)
     };
 
     /**
@@ -178,6 +164,12 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
         if (editForm.$valid && selected && edited) {
             selected.id = edited.id;
             selected.status = edited.status;
+            selected.creator = edited.creator;
+            selected.currentWorker = edited.currentWorker;
+            selected.createDateTimestamp = edited.createDateTimestamp;
+            selected.changeDateTimestamp = edited.changeDateTimestamp;
+            selected.titel = edited.titel;
+            selected.description = edited.description;
 
             // do save data
             ticketService.saveTicketWithPromise(selected)
@@ -203,7 +195,7 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
             if (element.$error.required) {
                 message = messages.errors.required;
             }
-            else if (element.$error.number) {
+            /*else if (element.$error.number) {
                 message = messages.errors.number;
             }
             else if (element.$error.min) {
@@ -211,7 +203,7 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
             }
             else {
                 message = messages.errors.unknown;
-            }
+            }*/
         }
         return message;
     };

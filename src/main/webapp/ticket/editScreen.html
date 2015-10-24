@@ -1,20 +1,30 @@
-<section>
+<section ng-controller="formController as formController">
     <h2>Detailansicht</h2>
 
     <!--ng-click ist noch falsch-->
-    <input type="submit" ng-click="formController.switchToScreen(ticketlistScreen)" value="zur&uuml;ck">
+    <input type="submit" ng-click="formController.cancel()" value="zur&uuml;ck">
+
+    <p></p>
 
     <table>
         <tr>
             <td>Bezeichnung:</td>
-            <td>{{ticket.titel}}</td>
+            <td><input type="text" name="titel" ng-model="formModel.formTicket.titel" ng-disabled="formModel.idEdit"
+                       required/>
+                   <span class="error" ng-show="ticketForm.titel.$invalid">
+                       {[formController.getErrorMessage(roomForm.titel)}}
+                   </span>
+                Beschreibung:
+            </td>
+
+            <td><textarea name="description" rows="4" cols="25" ng-model="formModel.formTicket.description"
+                          ng-disabled="formModel.isEdit" required/>
+                <span class="error" ng-show="ticketForm.description.$invalid">
+                    {{formController.getErrorMessage(roomForm.description)}}
+                </span>
+            </td>
         </tr>
 
-        <tr>
-            <td>Beschreibung:</td>
-            <!-- Hier soll noch die Höhe angepasst werden: muss ich mir noch anschauen!!-->
-            <td><textarea rows="4" cols="25" readonly>{{ticket.description}}</textarea></td>
-        </tr>
         <tr>
             <td>Verfasser:</td>
             <td>{{ticket.creator}}</td>
@@ -29,13 +39,13 @@
         </tr>
         <tr>
             <td>Kommentar:</td>
-            <!-- Hier soll noch die Höhe angepasst werden: muss ich mir noch anschauen!!-->
             <td><textarea rows="4" cols="25"></textarea></td>
         </tr>
 
         <tr>
             <td>
-                <select name="status">
+                <select name="status">  <!--//TODO hier muss noch irgendein Check rein, dass nur der Status entsprechend des Workflows ausgewählt werden kann!!-->
+                    <option>angelegt</option>
                     <option>in Bearbeitung</option>
                     <option>behoben</option>
                     <option>abgelehnt</option>
@@ -43,12 +53,16 @@
                     <option>wiederer&ouml;ffnet</option>
                 </select>
             </td>
-            <td><input type="submit" value ="&uuml;berf&uuml;hren" ng-click="ticketController.createTicket()"/></td>
+            <td><input type="submit" value ="best&auml;tigen" ng-disabled="ticketForm.$invalid || ticketForm.$pristine" ng-click="formController.saveTicket(ticketForm)"/></td>
         </tr>
     </table>
 
     <p></p>
     <p></p>
+    <p></p>
+
+    <h3>Kommentare</h3>
+
 
     <table>
         <tr>
@@ -57,9 +71,7 @@
             <th>Kommentar</th>
         </tr>
         <!--TODO: Mal sehen, was hier noch so für Parameter rein müssen....-->
-        <tr ng-repeat="ticket in model.ticket | orderBy:['id', 'titel']"
-            ng-click="ticketController.selectTicket(ticket)" ng-dblclick="ticketController.editTicket(ticket)"
-            ng-class="{selectedTicket:(ticket == model.selectedTicket)}">
+        <tr ng-repeat="commentary in model.commentary | orderBy:['date']">
             <td>{{commentary.date}}</td>
             <td>{{commentary.creator}}</td>
             <td>{{commentary.text}}</td>
