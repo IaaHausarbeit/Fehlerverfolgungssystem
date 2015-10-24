@@ -14,7 +14,7 @@ public class TicketDAO {
     private EntityManager entityManager;
 
     /**
-     * @return Gibt alle vorhandenen Entwickler zurück.
+     * @return Gibt alle vorhandenen Tickets zurück.
      */
     @SuppressWarnings(value = "unchecked")
     public List<Ticket> findAll() {
