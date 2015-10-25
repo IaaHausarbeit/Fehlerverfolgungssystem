@@ -9,16 +9,17 @@
     <table>
         <tr>
             <td>Bezeichnung:</td>
-            <td><input type="text" name="titel" ng-model="formModel.formTicket.titel" ng-disabled="formModel.idEdit"
-                       required/>
+            <td><input type="text" name="titel" ng-model="formModel.formTicket.titel" ng-disabled="formModel.isEdit"
+                       required>
                    <span class="error" ng-show="ticketForm.titel.$invalid">
-                       {[formController.getErrorMessage(roomForm.titel)}}
+                       {{formController.getErrorMessage(roomForm.titel)}}
                    </span>
-                Beschreibung:
             </td>
-
+        </tr>
+        <tr>
+            <td>Beschreibung:</td>
             <td><textarea name="description" rows="4" cols="25" ng-model="formModel.formTicket.description"
-                          ng-disabled="formModel.isEdit" required/>
+                          ng-disabled="formModel.isEdit" required></textarea>
                 <span class="error" ng-show="ticketForm.description.$invalid">
                     {{formController.getErrorMessage(roomForm.description)}}
                 </span>
