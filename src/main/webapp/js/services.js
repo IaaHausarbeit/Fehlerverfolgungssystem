@@ -12,7 +12,7 @@ services.service('ticketService', ['$http', function ($http) {
      * @returns {HttpPromise}.
      */
     this.listTicketsWithPromise = function () {
-        return $http.get('ticketlist');
+        return $http.get('ticket/ticketlist');
     };
 
     /**
@@ -21,7 +21,7 @@ services.service('ticketService', ['$http', function ($http) {
      * @returns {HttpPromise}.
      */
     this.saveTicketWithPromise = function (ticket) {
-        return $http.put('save', ticket);
+        return $http.put('ticket/save', ticket);
     };
 
 /*  eventuell später einfügen!
