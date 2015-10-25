@@ -54,6 +54,47 @@ controllers.controller('mainController', ['$scope', function ($scope) {
     };
 }]);
 
+//TODO mainScreen contoller
+controllers.controller('mainScreenController', ['$scope', function ($scope) {
+    // Set up the screens object
+    $scope.screens = {
+        ticketlistScreen: ['ticketlistScreen', 'ticketlist.html'],
+        editScreen: ['editScreen', 'editScreen.html']
+    };
+
+    // Set up the scope model
+    $scope.model = {
+        tickets: [],
+        selectedTicket: null,
+        screen: $scope.screens.ticketlistScreen
+    };
+
+    /**
+     * Switches to a specific screen.
+     * @param newScreen The current screen (an array).
+     */
+    $scope.switchToScreen = function (newScreen) {
+        if (angular.isArray(newScreen) && newScreen.length === 2) {
+            $scope.model.screen = newScreen;
+        }
+    };
+
+    /**
+     * Returns the current screen.
+     * @returns the corresponding array.
+     */
+    $scope.getCurrentScreen = function () {
+        return $scope.model.screen;
+    };
+
+    /**
+     * Returns the file name of the current screen.
+     * @returns a string.
+     */
+    this.getCurrentScreenSource = function () {
+        return $scope.model.screen[1];
+    };
+}]);
 
 
 //TODO STARTSEITE!
@@ -111,6 +152,7 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
      */
     this.newTicket = function () {
         //TODO
+        $scope.model.selectedTicket = new Ticket();
         $scope.switchToScreen($scope.screens.editScreen);
     };
 

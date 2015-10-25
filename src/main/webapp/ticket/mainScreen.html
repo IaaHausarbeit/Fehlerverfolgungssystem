@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="ticketsystem">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Fehlerverfolgungssystem</title>
+    <script type="application/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="application/javascript" src="../js/application.js"></script>
+    <script type="application/javascript" src="../js/controllers.js"></script>
+    <script type="application/javascript" src="../js/resources.js"></script>
+    <script type="application/javascript" src="../js/services.js"></script>
+</head>
+<body ng-controller="mainScreenController as mainScreenController">
+<h1>Angemeldet Willkommen im Ticketverfolgungssystem!</h1>
+<ng-include src="mainScreenController.getCurrentScreenSource()"></ng-include>
+</body>
+</html>
+

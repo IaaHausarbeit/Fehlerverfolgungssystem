@@ -1,82 +1,88 @@
 <section ng-controller="formController as formController">
-    <h2>Detailansicht</h2>
+    <form name="ticketForm" novalidate>
+        <h2>Detailansicht</h2>
 
-    <!--ng-click ist noch falsch-->
-    <input type="submit" ng-click="formController.cancel()" value="zur&uuml;ck">
+        <!--ng-click ist noch falsch-->
+        <input type="submit" ng-click="formController.cancel()" value="zur&uuml;ck">
 
-    <p></p>
+        <p></p>
 
-    <table>
-        <tr>
-            <td>Bezeichnung:</td>
-            <td><input type="text" name="titel" ng-model="formModel.formTicket.titel" ng-disabled="formModel.isEdit"
-                       required>
+        <table>
+            <tr>
+                <td>Bezeichnung:</td>
+                <td><input type="text" name="titel" ng-model="formModel.formTicket.titel" ng-disabled="formModel.isEdit"
+                           required>
                    <span class="error" ng-show="ticketForm.titel.$invalid">
-                       {{formController.getErrorMessage(roomForm.titel)}}
+                       {{formController.getErrorMessage(ticketForm.titel)}}
                    </span>
-            </td>
-        </tr>
-        <tr>
-            <td>Beschreibung:</td>
-            <td><textarea name="description" rows="4" cols="25" ng-model="formModel.formTicket.description"
-                          ng-disabled="formModel.isEdit" required></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Beschreibung:</td>
+                <td><textarea name="description" rows="4" cols="25" ng-model="formModel.formTicket.description"
+                              ng-disabled="formModel.isEdit" required></textarea>
                 <span class="error" ng-show="ticketForm.description.$invalid">
-                    {{formController.getErrorMessage(roomForm.description)}}
+                    {{formController.getErrorMessage(ticketForm.description)}}
                 </span>
-            </td>
-        </tr>
+                </td>
+            </tr>
 
-        <tr>
-            <td>Verfasser:</td>
-            <td>{{ticket.creator}}</td>
-        </tr>
-        <tr>
-            <td>Bearbeiter:</td>
-            <td>{{ticket.currentWorker}}</td>
-        </tr>
-        <tr>
-            <td>Status:</td>
-            <td>{{ticket.status}}</td>
-        </tr>
-        <tr>
-            <td>Kommentar:</td>
-            <td><textarea rows="4" cols="25"></textarea></td>
-        </tr>
+            <tr>
+                <td>Verfasser:</td>
+                <td>{{ticket.creator}}</td>
+            </tr>
+            <tr>
+                <td>Bearbeiter:</td>
+                <td>{{ticket.currentWorker}}</td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>{{ticket.status}}</td>
+            </tr>
+            <tr>
+                <td>Kommentar:</td>
+                <td><textarea rows="4" cols="25"></textarea></td>
+            </tr>
 
-        <tr>
-            <td>
-                <select name="status">  <!--//TODO hier muss noch irgendein Check rein, dass nur der Status entsprechend des Workflows ausgewählt werden kann!!-->
-                    <option>angelegt</option>
-                    <option>in Bearbeitung</option>
-                    <option>behoben</option>
-                    <option>abgelehnt</option>
-                    <option>geschlossen</option>
-                    <option>wiederer&ouml;ffnet</option>
-                </select>
-            </td>
-            <td><input type="submit" value ="best&auml;tigen" ng-disabled="ticketForm.$invalid || ticketForm.$pristine" ng-click="formController.saveTicket(ticketForm)"/></td>
-        </tr>
-    </table>
+            <tr>
+                <td>
+                    <select name="status">
+                        <!--//TODO hier muss noch irgendein Check rein, dass nur der Status entsprechend des Workflows ausgewählt werden kann!!-->
+                        <option>angelegt</option>
+                        <option>in Bearbeitung</option>
+                        <option>behoben</option>
+                        <option>abgelehnt</option>
+                        <option>geschlossen</option>
+                        <option>wiederer&ouml;ffnet</option>
+                    </select>
+                </td>
+                <td><input type="submit" value="best&auml;tigen"
+                           ng-disabled="ticketForm.$invalid || ticketForm.$pristine"
+                           ng-click="formController.saveTicket(ticketForm)"/></td>
+            </tr>
+        </table>
 
-    <p></p>
-    <p></p>
-    <p></p>
+        <p></p>
 
-    <h3>Kommentare</h3>
+        <p></p>
+
+        <p></p>
+
+        <h3>Kommentare</h3>
 
 
-    <table>
-        <tr>
-            <th>timestamp</th>
-            <th>Autor</th>
-            <th>Kommentar</th>
-        </tr>
-        <!--TODO: Mal sehen, was hier noch so für Parameter rein müssen....-->
-        <tr ng-repeat="commentary in model.commentary | orderBy:['date']">
-            <td>{{commentary.date}}</td>
-            <td>{{commentary.creator}}</td>
-            <td>{{commentary.text}}</td>
-        </tr>
-    </table>
-
+        <table>
+            <tr>
+                <th>timestamp</th>
+                <th>Autor</th>
+                <th>Kommentar</th>
+            </tr>
+            <!--TODO: Mal sehen, was hier noch so für Parameter rein müssen....-->
+            <tr ng-repeat="commentary in model.commentary | orderBy:['date']">
+                <td>{{commentary.date}}</td>
+                <td>{{commentary.creator}}</td>
+                <td>{{commentary.text}}</td>
+            </tr>
+        </table>
+    </form>
 </section>
