@@ -12,7 +12,7 @@ services.service('ticketService', ['$http', function ($http) {
      * @returns {HttpPromise}.
      */
     this.listTicketsWithPromise = function () {
-        return $http.get('/ticketlist');
+        return $http.get('../rest/ticketlist');
     };
 
     /**
@@ -21,10 +21,10 @@ services.service('ticketService', ['$http', function ($http) {
      * @returns {HttpPromise}.
      */
     this.saveTicketWithPromise = function (ticket) {
-        return $http.put('/save', ticket);
+        return $http.put('../rest/save', ticket);
     };
 
-/*  eventuell später einfügen!
+/*  eventuell spï¿½ter einfï¿½gen!
     /!**
      * Deletes the given ticket using an asynchronous REST call with promise.
      * @param ticket The ticket to be deleted.

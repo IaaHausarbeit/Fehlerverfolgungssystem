@@ -23,7 +23,7 @@ public class TicketController {
      * List all existing rooms.
      * @return the list of rooms.
      */
-    @RequestMapping(value = "/ticket/ticketlist", method = RequestMethod.GET)
+    @RequestMapping(value = "/ticketlist", method = RequestMethod.GET)
     public List<Ticket> listTickets() { return ticketService.listTickets(); }
 
     /**
@@ -31,7 +31,7 @@ public class TicketController {
      *
      * @param ticket The ticket to be saved.
      */
-    @RequestMapping(value = "/ticket/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/save", method = RequestMethod.PUT)
     public void saveTicket(@RequestBody Ticket ticket) throws Exception {
         ticketService.saveTicket(ticket);
     }
