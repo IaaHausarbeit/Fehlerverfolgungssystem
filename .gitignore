@@ -2,3 +2,4 @@
 *.iml
 target/*
 db/ticketsystem.trace.db
+db/ticketsystem.mv.db
