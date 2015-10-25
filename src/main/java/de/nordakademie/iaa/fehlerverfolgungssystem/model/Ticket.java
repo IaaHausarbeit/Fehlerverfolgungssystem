@@ -11,8 +11,7 @@ import java.util.Set;
  */
 @Entity
 public class Ticket implements Serializable {
-    //TODO serializable generieren
-
+    private static final long serialVersionUID = 7527894993588241766L;
     /**
      * ID des Tickets
      */

@@ -15,8 +15,8 @@ controllers.controller('mainController', ['$scope', function ($scope) {
     // Set up the screens object
     $scope.screens = {
         startScreen: ['startScreen', 'start.html'],
-        ticketlistScreen: ['ticketlistScreen', 'ticket/ticketlistScreen.html'],
-        editScreen: ['editScreen', 'ticket/editScreen.html'],
+        ticketlistScreen: ['ticketlistScreen', 'ticket/ticketlist.html'],
+        editScreen: ['editScreen', 'ticket/edit.html'],
         registrationScreen: ['registrationScreen', 'registration.html']
     };
 
@@ -76,15 +76,15 @@ controllers.controller('regController', ['$scope', function ($scope) {
         $scope.switchToScreen($scope.screens.startScreen);
     }
     this.registration = function(){
-        //hier muss eine Funktion zum Speichern der Daten rein + Prüfung, ob PW = PW & Benutzername und E-Mail noch nicht vergeben
-        //Prüfung, ob PW = PW auch direkt mit Angular?
+        //hier muss eine Funktion zum Speichern der Daten rein + Prï¿½fung, ob PW = PW & Benutzername und E-Mail noch nicht vergeben
+        //Prï¿½fung, ob PW = PW auch direkt mit Angular?
         $scope.switchToScreen($scope.screens.ticketlistScreen);
     }
 }]);
 
 
 
-//TODO: ListController anlegen mit den nötigen Methoden
+//TODO: ListController anlegen mit den nï¿½tigen Methoden
 // Set up the list controller.
 controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', function ($scope, Ticket, ticketService) {
     /**
@@ -109,7 +109,7 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
      */
     this.newTicket = function () {
         //TODO
-        $scope.model.selectedTicket = new Ticket(/*hier müssen die default parameter rein, aber ich weiß noch nicht,
+        $scope.model.selectedTicket = new Ticket(/*hier mï¿½ssen die default parameter rein, aber ich weiï¿½ noch nicht,
         wie ich den Status, angemeldeten Benutzer und Timestamp bekomme*/);
         $scope.switchToScreen($scope.screens.editTicket);
     };
@@ -125,7 +125,7 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
 }]);
 
 
-//TODO!! Für Edit / Create
+//TODO!! Fï¿½r Edit / Create
 // Set up the form controller.
 controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', function ($scope, Ticket, ticketService) {
     // Object containing the error messages.
