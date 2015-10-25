@@ -36,7 +36,7 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
 
@@ -74,10 +74,10 @@
     <bean id="commentaryDAO" class="de.nordakademie.iaa.fehlerverfolgungssystem.dao.CommentaryDAO"/>
 
     <!-- Services -->
-    <!--<bean id="roomService" class="de.nordakademie.iaa.roommgmt.service.RoomServiceImpl"/>-->
+    <bean id="ticketService" class="de.nordakademie.iaa.fehlerverfolgungssystem.service.TicketServiceImpl"/>
 
-    <!--<bean id="courseService" class="de.nordakademie.iaa.roommgmt.service.CourseServiceImpl"/>-->
+    <bean id="commentaryService" class="de.nordakademie.iaa.fehlerverfolgungssystem.service.CommentaryServiceImpl"/>
 
-    <!--<bean id="lectureService" class="de.nordakademie.iaa.roommgmt.service.LectureServiceImpl"/>-->
+    <bean id="developerService" class="de.nordakademie.iaa.fehlerverfolgungssystem.service.DeveloperServiceImpl"/>
 
 </beans>
