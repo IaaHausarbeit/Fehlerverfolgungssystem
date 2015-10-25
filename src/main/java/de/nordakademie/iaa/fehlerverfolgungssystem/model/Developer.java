@@ -1,16 +1,16 @@
 package de.nordakademie.iaa.fehlerverfolgungssystem.model;
 
 import javax.persistence.Column;
+import java.io.Serializable;
 
 /**
  * Klasse für einen Entwickler
  */
-public class Developer {
-    //TODO serializable generieren
+public class Developer implements Serializable{
+    private static final long serialVersionUID = -505469822666978576L;
 
     /**
      * Password
-     * TODO zuerst Klartext und am Ende kann man noch n Hashwert draus machen oder sowas schickes
      */
     private String password;
 

@@ -1,13 +1,14 @@
 package de.nordakademie.iaa.fehlerverfolgungssystem.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Klasse für Kommentare an einem Ticket
  */
 @Entity
-public class Commentary {
-    //TODO serializable generieren
+public class Commentary implements Serializable{
+    private static final long serialVersionUID = 5765278839783831981L;
     private Long id;
 
     /**
