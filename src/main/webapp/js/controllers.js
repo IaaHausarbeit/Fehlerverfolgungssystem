@@ -16,7 +16,7 @@ controllers.controller('mainController', ['$scope', function ($scope) {
     $scope.screens = {
         startScreen: ['startScreen', 'start.html'],
         ticketlistScreen: ['ticketlistScreen', 'ticket/ticketlist.html'],
-        editScreen: ['editScreen', 'ticket/edit.html'],
+        editScreen: ['editScreen', 'ticket/editScreen.html'],
         registrationScreen: ['registrationScreen', 'registration.html']
     };
 
