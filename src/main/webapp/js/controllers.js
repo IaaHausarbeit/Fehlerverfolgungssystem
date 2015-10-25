@@ -22,6 +22,8 @@ controllers.controller('mainController', ['$scope', function ($scope) {
 
     // Set up the scope model
     $scope.model = {
+        tickets: [],
+        selectedTicket: null,
         screen: $scope.screens.startScreen
     };
 
