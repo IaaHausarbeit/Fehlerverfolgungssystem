@@ -158,10 +158,10 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
 
     // List the current tickets.
     ticketService.listTicketsWithPromise()
-        .success(function (data) {
+        .success(function (data, status, headers, config) {
             $scope.model.tickets = data;
         })
-        .error(function () {
+        .error(function (data, status, headers, config) {
             alert("an error occured while loading");
         });
 }]);
