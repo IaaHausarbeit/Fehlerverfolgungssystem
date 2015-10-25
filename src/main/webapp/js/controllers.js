@@ -22,6 +22,8 @@ controllers.controller('mainController', ['$scope', function ($scope) {
 
     // Set up the scope model
     $scope.model = {
+        tickets: [],
+        selectedTicket: null,
         screen: $scope.screens.startScreen
     };
 
@@ -108,7 +110,10 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
      * Starts the creation of a new ticket.
      */
     this.newTicket = function () {
-        $scope.switchToScreen($scope.screens.editScreen);
+        //TODO
+        $scope.model.selectedTicket = new Ticket(/*hier m�ssen die default parameter rein, aber ich wei� noch nicht,
+        wie ich den Status, angemeldeten Benutzer und Timestamp bekomme*/);
+        $scope.switchToScreen($scope.screens.editTicket);
     };
 
     // List the current tickets.
