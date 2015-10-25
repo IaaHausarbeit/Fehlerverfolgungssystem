@@ -2,8 +2,10 @@ package de.nordakademie.iaa.fehlerverfolgungssystem.controller;
 
 import de.nordakademie.iaa.fehlerverfolgungssystem.model.Ticket;
 import de.nordakademie.iaa.fehlerverfolgungssystem.service.TicketService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
+import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -34,12 +36,10 @@ public class TicketController {
         ticketService.saveTicket(ticket);
     }
 
-    //detlete brauchen wir nicht
 
+    @Inject
     public void setTicketService(TicketService ticketService) {
-        this.ticketService = ticketService;
+        this.ticketService=ticketService;
     }
-
-
 
 }
