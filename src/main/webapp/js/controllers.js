@@ -111,21 +111,6 @@ controllers.controller('startController', ['$scope', function ($scope) {
 
 
 
-//TODO REGISTRIERUNGSSEITE
-//TODO: Hier fehlt noch die Registrierung an sich, also Abgleich mit DB und Speicherung
-//Set up the start controller.
-controllers.controller('regController', ['$scope', function ($scope) {
-    this.start = function (){
-        $scope.switchToScreen($scope.screens.startScreen);
-    }
-    this.registration = function(){
-        //hier muss eine Funktion zum Speichern der Daten rein + Pr�fung, ob PW = PW & Benutzername und E-Mail noch nicht vergeben
-        //Pr�fung, ob PW = PW auch direkt mit Angular?
-        $scope.switchToScreen($scope.screens.ticketlistScreen);
-    }
-}]);
-
-
 
 //TODO: ListController anlegen mit den n�tigen Methoden
 // Set up the list controller.
@@ -165,6 +150,72 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
             alert("an error occured while loading");
         });
 }]);
+
+
+//TODO REGISTRIERUNGSSEITE
+//Set up the registration controller.
+controllers.controller('regController', ['$scope', 'Developer', 'developerService', function ($scope, Developer, developerService) {
+    var messages = {
+        errors: {
+            required: 'Please enter a value!',
+            unknown: 'Please enter a valid value!'
+        }
+    };
+    /**
+     * cancel
+     */
+    this.start = function (){
+        $scope.switchToScreen($scope.screens.startScreen);
+    }
+
+    this.registration = function(){
+        //hier muss eine Funktion zum Speichern der Daten rein + Pr�fung, ob PW = PW & Benutzername und E-Mail noch nicht vergeben
+        //Pr�fung, ob PW = PW auch direkt mit Angular?
+        $scope.switchToScreen($scope.screens.ticketlistScreen);
+    }
+
+    /**
+     * Saves the Developer
+     * @param regForm The form object of the ticket.
+     */
+    this.saveDeveloper = function (regForm) {
+       /* var selected = $scope.model.selectedTicket;*/
+        var dev = $scope.formModel.formDeveloper;
+
+        if (regForm.$valid) {
+            // do save data
+            ticketService.saveDeveloperWithPromise(dev)
+                .success(function (data, status, headers, config) {
+                    if ($scope.model.developer.indexOf(selected) === -1) {
+                        $scope.model.developer.push(data);
+                    }
+                    $scope.switchToScreen($scope.screens.ticketlistScreen);
+                }).error(function (data, status, headers, config) {
+                    alert("an error occured while saving");
+                });
+        }
+    };
+
+    /**
+     * Returns the error message for the given element.
+     * @param element The element.
+     * @returns a string.
+     */
+    this.getErrorMessage = function (element) {
+        var message = null;
+        if (element.$error) {
+            if (element.$error.required) {
+                message = messages.errors.required;
+            } else {
+             message = messages.errors.unknown;
+             }
+        }
+        return message;
+    };
+
+}]);
+
+
 
 
 //TODO!! F�r Edit / Create
@@ -237,15 +288,6 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
             if (element.$error.required) {
                 message = messages.errors.required;
             }
-            /*else if (element.$error.number) {
-                message = messages.errors.number;
-            }
-            else if (element.$error.min) {
-                message = messages.errors.min;
-            }
-            else {
-                message = messages.errors.unknown;
-            }*/
         }
         return message;
     };

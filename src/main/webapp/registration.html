@@ -16,12 +16,13 @@
         </tr>
         <tr>
             <td>Passwort:</td>
-            <td><input type="password"/></td>
+            <td><input ng-model="password" type="password"/></td>
         </tr>
         <tr>
             <td>wiederholen:</td>
-            <td><input type="password"/></td>
+            <td><input ng-model="passwordConfirm" type="password" data-match="password"/></td>
         </tr>
+
         <tr>
             <td><input type="submit" ng-click="regController.start()" value="Abbrechen"/></td>
 
