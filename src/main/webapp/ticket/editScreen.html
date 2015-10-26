@@ -46,15 +46,7 @@
 
             <tr>
                 <td>
-                    <select name="status">
-                        <!--//TODO hier muss noch irgendein Check rein, dass nur der Status entsprechend des Workflows ausgewählt werden kann!!-->
-                        <option>angelegt</option>
-                        <option>in Bearbeitung</option>
-                        <option>behoben</option>
-                        <option>abgelehnt</option>
-                        <option>geschlossen</option>
-                        <option>wiederer&ouml;ffnet</option>
-                    </select>
+                    <select data-ng-options="stateOption.name for stateOption in stateOptions" data-ng-model="selectedOption"></select>
                 </td>
                 <td>
                     <input type="submit" value="best&auml;tigen"

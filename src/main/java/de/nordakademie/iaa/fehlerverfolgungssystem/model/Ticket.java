@@ -75,6 +75,7 @@ public class Ticket implements Serializable {
     }
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     public Status getStatus() {
         return status;
     }

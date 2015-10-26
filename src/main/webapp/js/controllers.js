@@ -214,7 +214,7 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
 
 //TODO!! F�r Edit / Create
 // Set up the form controller.
-controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', function ($scope, Ticket, ticketService) {
+controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', function ($scope, Ticket, ticketService, $http) {
     // Object containing the error messages.
     var messages = {
         errors: {
@@ -224,6 +224,10 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
             unknown: 'Please enter a valid value!'*/
         }
     };
+
+    // Auswahlfelder für den Ticketstatus
+    $scope.stateOptions = [{ name: "Angelegt", id: 1 }, { name: "In Bearbeitung", id: 2 }, {name: "In Bearbeitung", id: 3}, {name: "Abgelehnt", id: 4}, {name: "Wiedereroeffnet", id: 5}, {name: "Geschlossen", id: 6}];
+    $scope.selectedOption = $scope.stateOptions[0];
 
     // Set up the form model. //TODO angucken
     $scope.formModel = {
@@ -250,9 +254,9 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
         var edited = $scope.formModel.formTicket;
         if (editForm.$valid && selected && edited) {
             selected.id = edited.id;
-            selected.status = edited.status;
-            selected.creator = edited.creator;
-            selected.currentWorker = edited.currentWorker ? edited.currentWorker : console.log("GIB MIR DEN DEVELOPER");
+            selected.status = $scope.selectedOption.id;
+            selected.creator = edited.currentWorker ? edited.currentWorker : getLoginName();
+            selected.currentWorker = getLoginName(); //TODO Status hier mit reinziehen
             selected.changeDateTimestamp = new Date();
             selected.titel = edited.titel;
             selected.description = edited.description;
@@ -269,6 +273,13 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
                 });
         }
     };
+
+    function getLoginName(){
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "../rest/getUserName", false );
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
 
     /**
      * Returns the error message for the given element.
