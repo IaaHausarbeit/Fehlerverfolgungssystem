@@ -4,6 +4,8 @@ import de.nordakademie.iaa.fehlerverfolgungssystem.model.Developer;
 import de.nordakademie.iaa.fehlerverfolgungssystem.service.DeveloperService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.inject.Inject;
+
 /**
  * Rest controller for the developer service.
  */
@@ -19,5 +21,10 @@ public class DeveloperController {
     @RequestMapping(value = "/saveDeveloper", method = RequestMethod.PUT)
     public void saveDeveloper(@RequestBody Developer developer) throws Exception {
         developerService.createDeveloper(developer);
+    }
+
+    @Inject
+    public void setTicketService(DeveloperService developerService) {
+        this.developerService=developerService;
     }
 }
