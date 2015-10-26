@@ -9,7 +9,7 @@
         <p></p>
 
         <input type="submit" value="anlegen" ng-click="listController.newTicket()"/>
-        <input type="submit" value="ansicht" ng-click="listController.editTicket()"/>
+        <input type="submit" value="ansicht" ng-click="listController.editTicket(model.selectedTicket)"/>
 
         <p></p>
 
@@ -23,9 +23,8 @@
                 <th>angelegt</th>
                 <th>letzte &Auml;nderung</th>
             </tr>
-            <!--TODO: Mal sehen, was hier noch so für Parameter rein müssen....-->
-            <tr ng-repeat="ticket in model.ticket"
-                ng-click="listController.selectTicket(ticket)" ng-dblclick="listController.editTicket(ticket)"
+            <tr ng-repeat="ticket in model.tickets"
+                ng-click="listController.selectTicket(model.selectedTicket)" ng-dblclick="listController.editTicket(model.selectedTicket)"
                 ng-class="{selectedTicket:(ticket == model.selectedTicket)}">
                 <td>{{ ticket.id }}</td>
                 <td>{{ticket.titel}}</td>
@@ -34,11 +33,10 @@
                 <td>{{ticket.creator}}</td>
                 <td>{{ticket.createDateTimestamp}}</td>
                 <td>{{ticket.changeDateTimestamp}}</td>
-
-                <!--[{"id":1,"status":"IN_PROGRESS","creator":"nickname","currentWorker":"nickname","createDateTimestamp":1445812355729,"changeDateTimestamp":1445812355456,"titel":"Titel","description":"Beispiel"}]-->
             </tr>
         </table>
 
     </form>
 
 </section>
+

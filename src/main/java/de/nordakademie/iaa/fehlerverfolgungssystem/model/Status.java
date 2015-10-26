@@ -5,34 +5,35 @@ import java.util.Map;
 
 /**
  * Enumeration aller vorhandenen Status.
- * Dies soll eine einfachere und allgemeingültige Handhabung der Status ermöglichen
+ * Dies soll eine einfachere und allgemeingültige Handhabung der Status ermöglichen.
+ * Die Bezeichnung der Entitäten ist in Deutsch, damit sie in der Oberfläche auch Deutsch angezeigt werden
  */
 public enum Status {
 
     /**
      * Anglegt
      */
-    CREATED(1, "Angelegt"),
+    ANGELEGT(1, "Angelegt"),
     /**
      * In Bearbeitung
      */
-    IN_PROGRESS(2, "In Bearbeitung"),
+    IN_BEARBEITUNG(2, "In Bearbeitung"),
     /**
      * Behoben
      */
-    DONE(3, "Behoben"),
+    BEHOBEN(3, "Behoben"),
     /**
      * Abgelehnt
      */
-    DECLINED(4, "Abgelehnt"),
+    ABGELEHNT(4, "Abgelehnt"),
     /**
      * Wiedereröffnet
      */
-    REOPENED(5, "Wiedereröffnet"),
+    WIEDEREROEFFNET(5, "Wiedereröffnet"),
     /**
      * Geschlossen
      */
-    CLOSED(6, "Geschlossen");
+    GESCHLOSSEN(6, "Geschlossen");
 
     private int code;
     private String label;
