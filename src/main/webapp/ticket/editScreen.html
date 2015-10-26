@@ -56,9 +56,11 @@
                         <option>wiederer&ouml;ffnet</option>
                     </select>
                 </td>
-                <td><input type="submit" value="best&auml;tigen"
+                <td>
+                    <input type="submit" value="best&auml;tigen"
                            ng-disabled="ticketForm.$invalid || ticketForm.$pristine"
-                           ng-click="formController.saveTicket(ticketForm)"/></td>
+                           ng-click="formController.saveTicket(ticketForm)"/>
+                </td>
             </tr>
         </table>
 
@@ -85,4 +87,5 @@
             </tr>
         </table>
     </form>
+
 </section>

@@ -2,6 +2,7 @@ package de.nordakademie.iaa.fehlerverfolgungssystem.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -35,12 +36,14 @@ public class Ticket implements Serializable {
     /**
      * Erstellungsdatum
      */
-    private Long createDateTimestamp;
+    @Temporal(TemporalType.DATE)
+    @Column
+    private Date createDateTimestamp = new Date();
 
     /**
      * Bearbeitungsdatum
      */
-    private Long changeDateTimestamp;
+    private Date changeDateTimestamp;
 
     /**
      * Titel des Tickets (Kurzüberschrift)
@@ -80,22 +83,13 @@ public class Ticket implements Serializable {
         this.status = status;
     }
 
-    @Column(nullable = false)
-    public Long getChangeDateTimestamp() {
+    @Column
+    public Date getChangeDateTimestamp() {
         return changeDateTimestamp;
     }
 
-    public void setChangeDateTimestamp(Long changeDateTimestamp) {
+    public void setChangeDateTimestamp(Date changeDateTimestamp) {
         this.changeDateTimestamp = changeDateTimestamp;
-    }
-
-    @Column(nullable = false)
-    public Long getCreateDateTimestamp() {
-        return createDateTimestamp;
-    }
-
-    public void setCreateDateTimestamp(Long createDateTimestamp) {
-        this.createDateTimestamp = createDateTimestamp;
     }
 
     @Column(nullable = false)

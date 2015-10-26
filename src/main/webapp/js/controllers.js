@@ -258,9 +258,8 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
             selected.id = edited.id;
             selected.status = edited.status;
             selected.creator = edited.creator;
-            selected.currentWorker = edited.currentWorker;
-            selected.createDateTimestamp = edited.createDateTimestamp;
-            selected.changeDateTimestamp = edited.changeDateTimestamp;
+            selected.currentWorker = edited.currentWorker ? edited.currentWorker : console.log("GIB MIR DEN DEVELOPER");
+            selected.changeDateTimestamp = new Date();
             selected.titel = edited.titel;
             selected.description = edited.description;
 
