@@ -12,6 +12,7 @@ public interface TicketService {
     /**
      * Stores the given ticket into the database
      * @param ticket The ticket to be saved.
+     * @throws EntityAlreadyPresentException
      */
     void saveTicket(Ticket ticket) throws EntityAlreadyPresentException; //wann wird die geworfen und warum?
 

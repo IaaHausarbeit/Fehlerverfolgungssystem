@@ -31,7 +31,7 @@ public class TicketController {
      *
      * @param ticket The ticket to be saved.
      */
-    @RequestMapping(value = "/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/saveTicket", method = RequestMethod.PUT)
     public void saveTicket(@RequestBody Ticket ticket) throws Exception {
         ticketService.saveTicket(ticket);
     }

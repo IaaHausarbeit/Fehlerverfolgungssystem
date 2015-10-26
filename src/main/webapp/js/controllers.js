@@ -168,12 +168,6 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
         $scope.switchToScreen($scope.screens.startScreen);
     }
 
-    this.registration = function(){
-        //hier muss eine Funktion zum Speichern der Daten rein + Pr�fung, ob PW = PW & Benutzername und E-Mail noch nicht vergeben
-        //Pr�fung, ob PW = PW auch direkt mit Angular?
-        $scope.switchToScreen($scope.screens.ticketlistScreen);
-    }
-
     /**
      * Saves the Developer
      * @param regForm The form object of the ticket.

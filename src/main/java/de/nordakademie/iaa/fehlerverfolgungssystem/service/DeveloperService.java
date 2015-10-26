@@ -8,6 +8,11 @@ import java.util.List;
  * Created by Paul on 23.10.2015.
  */
 public interface DeveloperService {
+    /**
+     * creates the developer.
+     * @param developer
+     * @throws EntityAlreadyPresentException
+     */
     void createDeveloper(Developer developer) throws EntityAlreadyPresentException;
 
     /**
@@ -17,5 +22,6 @@ public interface DeveloperService {
     List<Developer> listTickets();
 
     Developer getDeveloper(String id);
+
 
 }

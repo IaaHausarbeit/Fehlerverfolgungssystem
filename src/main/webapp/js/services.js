@@ -21,7 +21,7 @@ services.service('ticketService', ['$http', function ($http) {
      * @returns {HttpPromise}.
      */
     this.saveTicketWithPromise = function (ticket) {
-        return $http.put('../rest/save', ticket);
+        return $http.put('../rest/saveTicket', ticket);
     };
 
 /*  eventuell sp�ter einf�gen!
@@ -33,4 +33,16 @@ services.service('ticketService', ['$http', function ($http) {
     this.deleteRoomWithPromise = function (ticket) {
         return $http.delete('rest/ticets/' + ticket.id);
     }*/
+}]);
+
+// Set up the room service.
+services.service('developerService', ['$http', function ($http) {
+    /**
+     * Saves the developer (registration)
+     * @param developer
+     * @returns {HttpPromise}.
+     */
+    this.saveDeveloperWithPromise = function (developer) {
+        return $http.put('rest/saveDeveloper', developer);
+    };
 }]);
