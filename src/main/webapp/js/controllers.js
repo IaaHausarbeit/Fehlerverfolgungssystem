@@ -269,7 +269,8 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
             selected.id = edited.id;
             selected.status = $scope.selectedOption.id - 1;
             selected.creator = edited.currentWorker ? edited.currentWorker : getLoginName();
-            selected.currentWorker = getLoginName(); //TODO Status hier mit reinziehen
+
+            selected.currentWorker = selected.status == $scope.selectedOption.id - 1 ? "": getLoginName(); //TODO Status hier mit reinziehen
             selected.changeDateTimestamp = (new Date()).toJSON().slice(0, 10);
             selected.titel = edited.titel;
             selected.description = edited.description;
@@ -282,7 +283,7 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
                     }
                     $scope.switchToScreen($scope.screens.ticketlistScreen);
                 }).error(function (data, status, headers, config) {
-                    alert("an error occured while saving");
+                    alert("Fehler beim Speichern.");
                 });
         }
     };

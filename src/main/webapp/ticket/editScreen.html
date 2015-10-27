@@ -9,7 +9,7 @@
 
         <table>
             <tr>
-                <td>Bezeichnung:</td>
+                <td>Titel:</td>
                 <td><input type="text" name="titel" ng-model="formModel.formTicket.titel" ng-disabled="formModel.isEdit"
                            required>
                    <span class="error" ng-show="ticketForm.titel.$invalid">
@@ -28,16 +28,16 @@
             </tr>
 
             <tr>
-                <td>Verfasser:</td>
-                <td>{{ticket.creator}}</td>
+                <td>Autor:</td>
+                <td><label name="creator" ng-model="formModel.formTicket.creator">{{formModel.formTicket.creator}}</label></td>
             </tr>
             <tr>
                 <td>Bearbeiter:</td>
-                <td>{{ticket.currentWorker}}</td>
+                <td><label ng-model="formModel.formTicket.currentWorker">{{formModel.formTicket.currentWorker}}</label></td>
             </tr>
             <tr>
                 <td>Status:</td>
-                <td>{{ticket.status}}</td>
+                <td><label ng-model="formModel.formTicket.status">{{formModel.formTicket.status}}</label></td>
             </tr>
             <tr>
                 <td>Kommentar:</td>

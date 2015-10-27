@@ -11,16 +11,11 @@
 
         <p></p>
 
-        <!--<input type="submit" value="anlegen" ng-click="listController.newTicket()"/>-->
-        <!--<input type="submit" value="ansicht" ng-click="listController.editTicket(model.selectedTicket)"/>-->
-
-
         <!--search and filtering https://scotch.io/tutorials/sort-and-filter-a-table-using-angular-->
         <form>
             <div class="form-group">
                 <div class="btn-group">
                     <input type="submit" value="anlegen" ng-click="listController.newTicket()"/>
-                    <input type="submit" value="ansicht" ng-click="listController.editTicket(model.selectedTicket)"/>
                 </div>
                 <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-search"></i></div>
@@ -87,8 +82,11 @@
             </thead>
 
             <tbody>
-            <tr ng-repeat="ticket in model.tickets | orderBy:sortType:sortReverse | filter:searchTickets">
-                <td>{{ ticket.id }}</td>
+            <tr ng-repeat="ticket in model.tickets | orderBy:sortType:sortReverse | filter:searchTickets"
+                ng-click="listController.selectTicket(ticket)"
+                ng-dblclick="listController.editTicket(ticket)"
+                ng-class="{selectedTicket:(ticket == model.selectedTicket)}">
+                <td>{{ticket.id}}</td>
                 <td>{{ticket.titel}}</td>
                 <td>{{ticket.status}}</td>
                 <td>{{ticket.description}}</td>
