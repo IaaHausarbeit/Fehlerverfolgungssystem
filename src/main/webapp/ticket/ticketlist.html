@@ -63,6 +63,13 @@
                     </a>
                 </td>
                 <td>
+                <a href="" ng-click="sortType = 'currentWorker'; sortReverse = !sortReverse">
+                    <span ng-show="sortType == 'currentWorker' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'currentWorker' && sortReverse" class="fa fa-caret-up"></span>
+                    Bearbeiter
+                </a>
+                </td>
+                <td>
                     <a href="" ng-click="sortType = 'createDateTimestamp'; sortReverse = !sortReverse">
                         <span ng-show="sortType == 'createDateTimestamp' && !sortReverse"
                               class="fa fa-caret-down"></span>
@@ -91,6 +98,7 @@
                 <td><div style="max-height:100px; overflow:hidden">{{ticket.status}}</div></td>
                 <td><div style="max-height:100px; overflow:hidden">{{ticket.description}}</div></td>
                 <td><div style="max-height:100px; overflow:hidden">{{ticket.creator}}</div></td>
+                <td><div style="max-height:100px; overflow:hidden">{{ticket.currentWorker}}</div></td>
                 <td><div style="max-height:100px; overflow:hidden">{{ticket.createDateTimestamp}}</div></td>
                 <td><div style="max-height:100px; overflow:hidden">{{ticket.changeDateTimestamp}}</div></td>
             </tr>
