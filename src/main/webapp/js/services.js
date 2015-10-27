@@ -24,15 +24,6 @@ services.service('ticketService', ['$http', function ($http) {
         return $http.put('../rest/saveTicket', ticket);
     };
 
-/*  eventuell sp�ter einf�gen!
-    /!**
-     * Deletes the given ticket using an asynchronous REST call with promise.
-     * @param ticket The ticket to be deleted.
-     * @returns {HttpPromise}.
-     *!/
-    this.deleteRoomWithPromise = function (ticket) {
-        return $http.delete('rest/ticets/' + ticket.id);
-    }*/
 }]);
 
 // Set up the room service.
@@ -45,4 +36,24 @@ services.service('developerService', ['$http', function ($http) {
     this.saveDeveloperWithPromise = function (developer) {
         return $http.put('rest/saveDeveloper', developer);
     };
+}]);
+
+services.service('commentaryService', ['$http', function ($http){
+    /**
+     * Returns all commentary.
+     * @returns {HttpPromise}
+     */
+    this.listCommentariesWithPromise = function () {
+        return $http.get('rest/commentarylist');
+    };
+
+    /**
+     * saves a commentary.
+     * @param commentary
+     * @returns {HttpPromise}
+     */
+    this.saveCommentaryWithPromise = function (commentary) {
+        return $http.put('rest/saveCommentary', commentary);
+    };
+
 }]);
