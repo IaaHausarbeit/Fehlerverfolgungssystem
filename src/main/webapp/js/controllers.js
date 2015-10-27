@@ -113,6 +113,9 @@ controllers.controller('startController', ['$scope', function ($scope) {
 //TODO: ListController anlegen mit den n�tigen Methoden
 // Set up the list controller.
 controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', function ($scope, Ticket, ticketService) {
+    $scope.sortType     = 'number'; // set the default sort type
+    $scope.sortReverse  = false;  // set the default sort order
+
     /**
      * Selects a ticket.
      * @param selected The ticket to be selected.
