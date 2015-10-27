@@ -102,7 +102,7 @@ public class Ticket implements Serializable {
         this.titel = titel;
     }
 
-    @Column
+    @Column(columnDefinition = "NVARCHAR(MAX)")
     public String getDescription() {
         return description;
     }
