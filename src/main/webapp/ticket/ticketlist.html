@@ -88,13 +88,13 @@
 
             <tbody>
             <tr ng-repeat="ticket in model.tickets | orderBy:sortType:sortReverse | filter:searchTickets">
-                <td>{{ ticket.id }}</td>
-                <td>{{ticket.titel}}</td>
-                <td>{{ticket.status}}</td>
-                <td>{{ticket.description}}</td>
-                <td>{{ticket.creator}}</td>
-                <td>{{ticket.createDateTimestamp}}</td>
-                <td>{{ticket.changeDateTimestamp}}</td>
+                <td><div style="max-height:100px; overflow:hidden">{{ ticket.id }}</div></td>
+                <td><div style="max-height:100px; overflow:hidden">{{ticket.titel}}</div></td>
+                <td><div style="max-height:100px; overflow:hidden">{{ticket.status}}</div></td>
+                <td><div style="max-height:100px; overflow:hidden">{{ticket.description}}</div></td>
+                <td><div style="max-height:100px; overflow:hidden">{{ticket.creator}}</div></td>
+                <td><div style="max-height:100px; overflow:hidden">{{ticket.createDateTimestamp}}</div></td>
+                <td><div style="max-height:100px; overflow:hidden">{{ticket.changeDateTimestamp}}</div></td>
             </tr>
             </tbody>
         </table>
