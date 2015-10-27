@@ -32,9 +32,18 @@ public class Commentary implements Serializable{
     /**
      * Ticket, an dem der Kommentar geschrieben wurde
      */
-    @ManyToOne
-    @JoinColumn(name = "FK_TICKET")
+
     private Ticket ticket;
+
+    @ManyToOne
+    @JoinColumn(name = "TICKET_ID")
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

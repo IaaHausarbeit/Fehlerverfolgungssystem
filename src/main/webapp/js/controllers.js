@@ -246,16 +246,6 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
                 selected.commentaryList = edited.commentaryList;
             }*/
 
-            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
-             ticketService.saveCommentaryWithPromise(commentary)
-             .success(function (data, status, headers, config) {
-             if ($scope.model.commentaryList.indexOf(commentary) === -1) {
-                $scope.model.commentaryList.push(data);
-             }
-             }).error(function (data, status, headers, config) {
-             alert("Fehler beim Speichern.");
-             });
-
             // do save data
             ticketService.saveTicketWithPromise(selected)
                 .success(function (data, status, headers, config) {
@@ -263,6 +253,16 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
                         $scope.model.tickets.push(data);
                     }
                     $scope.switchToScreen($scope.screens.ticketlistScreen);
+                }).error(function (data, status, headers, config) {
+                    alert("Fehler beim Speichern.");
+                });
+
+            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
+            ticketService.saveCommentaryWithPromise(commentary)
+                .success(function (data, status, headers, config) {
+                    if ($scope.model.commentaryList.indexOf(commentary) === -1) {
+                        $scope.model.commentaryList.push(data);
+                    }
                 }).error(function (data, status, headers, config) {
                     alert("Fehler beim Speichern.");
                 });

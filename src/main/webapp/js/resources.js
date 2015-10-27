@@ -29,8 +29,8 @@ resources.factory('Developer', function () {
 });
 
 resources.factory('Commentary', function(){
-   return function(id, text, creator, date){
-       this.id = id;
+   return function(ticket_id, text, creator, date){
+       this.ticket_id = ticket_id;
        this.text = text;
        this.creator = creator;
        this.date = date;
