@@ -27,3 +27,12 @@ resources.factory('Developer', function () {
         this.password = password;
     };
 });
+
+resources.factory('Commentary', function(){
+   return function(id, text, creator, date){
+       this.id = id;
+       this.text = text;
+       this.creator = creator;
+       this.date = date;
+   };
+});

@@ -5,12 +5,8 @@
 
 var controllers = angular.module('controllers', ['resources', 'services']);
 
-/*TODO: regController!! Im Moment ruft der nur die Ticketlist auf, ohne Benutzername, E-Mail Adresse und PW
- abzugleichen und zu speichern.*/
-
-
 //Controller, um zwischen den Seiten hin und her zu springen!
-//TODO: Set up main controller.
+//Set up main controller.
 controllers.controller('mainController', ['$scope', function ($scope) {
     // Set up the screens object
     $scope.screens = {
@@ -22,8 +18,6 @@ controllers.controller('mainController', ['$scope', function ($scope) {
 
     // Set up the scope model
     $scope.model = {
-        tickets: [],
-        selectedTicket: null,
         screen: $scope.screens.startScreen
     };
 
@@ -38,14 +32,6 @@ controllers.controller('mainController', ['$scope', function ($scope) {
     };
 
     /**
-     * Returns the current screen.
-     * @returns the corresponding array.
-     */
-    $scope.getCurrentScreen = function () {
-        return $scope.model.screen;
-    };
-
-    /**
      * Returns the file name of the current screen.
      * @returns a string.
      */
@@ -54,7 +40,7 @@ controllers.controller('mainController', ['$scope', function ($scope) {
     };
 }]);
 
-//TODO mainScreen contoller
+//mainScreenController
 controllers.controller('mainScreenController', ['$scope', function ($scope) {
     // Set up the screens object
     $scope.screens = {
@@ -77,14 +63,6 @@ controllers.controller('mainScreenController', ['$scope', function ($scope) {
         if (angular.isArray(newScreen) && newScreen.length === 2) {
             $scope.model.screen = newScreen;
         }
-    };
-
-    /**
-     * Returns the current screen.
-     * @returns the corresponding array.
-     */
-    $scope.getCurrentScreen = function () {
-        return $scope.model.screen;
     };
 
     /**
@@ -166,9 +144,6 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
      * @param regForm The form object of the ticket.
      */
     this.saveDeveloper = function (regForm) {
-        /* var selected = $scope.model.selectedTicket;*/
-        //var dev = $scope.formModel.formDeveloper;
-        console.log("Hallo");
         var dev = new Developer(document.getElementById("nameId").value, document.getElementById("nicknameId").value, document.getElementById("eMailId").value, document.getElementById("passwordId").value);
 
         if (regForm.$valid) {
@@ -207,7 +182,7 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
 
 //TODO!! F�r Edit / Create
 // Set up the form controller.
-controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', function ($scope, Ticket, ticketService, $http) {
+controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', function ($scope, Ticket, ticketService, Commentary, $http) {
     // Object containing the error messages.
     var messages = {
         errors: {
@@ -215,6 +190,7 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
         }
     };
 
+    //TODO
        // Auswahlfelder für den Ticketstatus
     /* if ($scope.model.selectedTicket.status == null) {
      $scope.stateOptions = [{name: "Angelegt", id: 1}];
@@ -265,7 +241,20 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
             selected.changeDateTimestamp = (new Date()).toJSON().slice(0, 10);
             selected.titel = edited.titel;
             selected.description = edited.description;
-            selected.commentaryList = edited.commentaryList;
+           /* if(edited.commentaryList !== undefined){
+                edited.commentaryList.push(document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
+                selected.commentaryList = edited.commentaryList;
+            }*/
+
+            var commentary = new Commentary(null, document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
+             ticketService.saveCommentaryWithPromise(commentary)
+             .success(function (data, status, headers, config) {
+             if ($scope.model.commentaryList.indexOf(commentary) === -1) {
+             $scope.model.commentaryList.push(data);
+             }
+             }).error(function (data, status, headers, config) {
+             alert("Fehler beim Speichern.");
+             });
 
             // do save data
             ticketService.saveTicketWithPromise(selected)

@@ -24,21 +24,6 @@ services.service('ticketService', ['$http', function ($http) {
         return $http.put('../rest/saveTicket', ticket);
     };
 
-}]);
-
-// Set up the room service.
-services.service('developerService', ['$http', function ($http) {
-    /**
-     * Saves the developer (registration)
-     * @param developer
-     * @returns {HttpPromise}.
-     */
-    this.saveDeveloperWithPromise = function (developer) {
-        return $http.put('rest/saveDeveloper', developer);
-    };
-}]);
-
-services.service('commentaryService', ['$http', function ($http){
     /**
      * Returns all commentary.
      * @returns {HttpPromise}
@@ -56,4 +41,16 @@ services.service('commentaryService', ['$http', function ($http){
         return $http.put('rest/saveCommentary', commentary);
     };
 
+}]);
+
+// Set up the room service.
+services.service('developerService', ['$http', function ($http) {
+    /**
+     * Saves the developer (registration)
+     * @param developer
+     * @returns {HttpPromise}.
+     */
+    this.saveDeveloperWithPromise = function (developer) {
+        return $http.put('rest/saveDeveloper', developer);
+    };
 }]);
