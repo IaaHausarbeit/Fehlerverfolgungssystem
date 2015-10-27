@@ -35,7 +35,6 @@ public class Commentary implements Serializable{
     @JoinColumn(name = "FK_TICKET")
     private Ticket ticket;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
