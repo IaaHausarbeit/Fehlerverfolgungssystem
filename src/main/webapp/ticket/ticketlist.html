@@ -7,30 +7,87 @@
 </head>
 <section ng-controller="listController as listController">
     <form name="ticketForm" novalidate>
-        <h2>Liste der Tickets</h2>
+        <h3>Liste der Tickets</h3>
 
         <p></p>
 
-        <input type="submit" value="anlegen" ng-click="listController.newTicket()"/>
-        <input type="submit" value="ansicht" ng-click="listController.editTicket(model.selectedTicket)"/>
+        <!--<input type="submit" value="anlegen" ng-click="listController.newTicket()"/>-->
+        <!--<input type="submit" value="ansicht" ng-click="listController.editTicket(model.selectedTicket)"/>-->
 
-        <p></p>
-<!--https://scotch.io/tutorials/sort-and-filter-a-table-using-angular-->
+
+        <!--search and filtering https://scotch.io/tutorials/sort-and-filter-a-table-using-angular-->
+        <form>
+            <div class="form-group">
+                <div class="btn-group">
+                    <input type="submit" value="anlegen" ng-click="listController.newTicket()"/>
+                    <input type="submit" value="ansicht" ng-click="listController.editTicket(model.selectedTicket)"/>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                    <input type="text" class="form-control" placeholder="Tickets durchsuchen" ng-model="searchTickets"
+                           id="search">
+                </div>
+            </div>
+        </form>
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <td>Nr.</td>
-                <td>Bezeichnung</td>
-                <td>Status</td>
-                <td>Beschreibung</td>
-                <td>Autor</td>
-                <td>angelegt am</td>
-                <td>letzte &Auml;nderung</td>
+                <td>
+                    <a href="" ng-click="sortType = 'id'; sortReverse = !sortReverse">
+                        <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>
+                        Nr.
+                    </a>
+                </td>
+                <td>
+                    <a href="" ng-click="sortType = 'titel'; sortReverse = !sortReverse">
+                        <span ng-show="sortType == 'titel' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'titel' && sortReverse" class="fa fa-caret-up"></span>
+                        Titel
+                    </a>
+                </td>
+                <td>
+                    <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+                        <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                        Status
+                    </a>
+                </td>
+                <td>
+                    <a href="" ng-click="sortType = 'description'; sortReverse = !sortReverse">
+                        <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
+                        Beschreibung
+                    </a>
+                </td>
+                <td>
+                    <a href="" ng-click="sortType = 'creator'; sortReverse = !sortReverse">
+                        <span ng-show="sortType == 'creator' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'creator' && sortReverse" class="fa fa-caret-up"></span>
+                        Autor
+                    </a>
+                </td>
+                <td>
+                    <a href="" ng-click="sortType = 'createDateTimestamp'; sortReverse = !sortReverse">
+                        <span ng-show="sortType == 'createDateTimestamp' && !sortReverse"
+                              class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'createDateTimestamp' && sortReverse" class="fa fa-caret-up"></span>
+                        angelegt am
+                    </a>
+                </td>
+                <td>
+                    <a href="#" ng-click="sortType = 'changeDateTimestamp'; sortReverse = !sortReverse">
+                        <span ng-show="sortType == 'changeDateTimestamp' && !sortReverse"
+                              class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'changeDateTimestamp' && sortReverse" class="fa fa-caret-up"></span>
+                        letzte &Auml;nderung
+                    </a>
+                </td>
             </tr>
             </thead>
 
             <tbody>
-            <tr ng-repeat="ticket in model.tickets | orderBy:sortType">
+            <tr ng-repeat="ticket in model.tickets | orderBy:sortType:sortReverse | filter:searchTickets">
                 <td>{{ ticket.id }}</td>
                 <td>{{ticket.titel}}</td>
                 <td>{{ticket.status}}</td>
@@ -41,18 +98,6 @@
             </tr>
             </tbody>
         </table>
-
-            <!--<tr ng-repeat="ticket in model.tickets | orderBy:sortType"-->
-                <!--ng-click="listController.selectTicket(model.selectedTicket)" ng-dblclick="listController.editTicket(model.selectedTicket)"-->
-                <!--ng-class="{selectedTicket:(ticket == model.selectedTicket)}">-->
-                <!--<td>{{ ticket.id }}</td>-->
-                <!--<td>{{ticket.titel}}</td>-->
-                <!--<td>{{ticket.status}}</td>-->
-                <!--<td>{{ticket.description}}</td>-->
-                <!--<td>{{ticket.creator}}</td>-->
-                <!--<td>{{ticket.createDateTimestamp}}</td>-->
-                <!--<td>{{ticket.changeDateTimestamp}}</td>-->
-            <!--</tr>-->
 
     </form>
 
