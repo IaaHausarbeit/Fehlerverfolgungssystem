@@ -33,11 +33,10 @@ public class Ticket implements Serializable {
      */
     private String currentWorker;
 
+
     /**
      * Erstellungsdatum
      */
-    @Temporal(TemporalType.DATE)
-    @Column
     private Date createDateTimestamp = new Date();
 
     /**
@@ -58,8 +57,8 @@ public class Ticket implements Serializable {
     /**
      * Liste aller Kommentare am Ticket --> durch onetomany ohne Liste realisieren
      */
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="ticket_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ticket_id")
     private Set<Commentary> commentaryList;
 
 
@@ -85,6 +84,7 @@ public class Ticket implements Serializable {
     }
 
     @Column
+    @Temporal(TemporalType.DATE)
     public Date getChangeDateTimestamp() {
         return changeDateTimestamp;
     }
@@ -127,6 +127,16 @@ public class Ticket implements Serializable {
 
     public void setCurrentWorker(String currentWorker) {
         this.currentWorker = currentWorker;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column
+    public Date getCreateDateTimestamp() {
+        return createDateTimestamp;
+    }
+
+    public void setCreateDateTimestamp(Date createDateTimestamp) {
+        this.createDateTimestamp = createDateTimestamp;
     }
 
 }
