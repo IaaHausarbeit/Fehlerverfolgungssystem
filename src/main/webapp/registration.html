@@ -1,34 +1,37 @@
 <section ng-controller="regController as regController">
     <h2>Registrieren</h2>
 
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text"/></td>
-        </tr>
-        <tr>
-            <td>Benutzername:</td>
-            <td><input type="text"/></td>
-        </tr>
-        <tr>
-            <td>E-Mail:</td>
-            <td><input type="email"/></td>
-        </tr>
-        <tr>
-            <td>Passwort:</td>
-            <td><input ng-model="password" type="password"/></td>
-        </tr>
-        <tr>
-            <td>wiederholen:</td>
-            <td><input ng-model="passwordConfirm" type="password" data-match="password"/></td>
-        </tr>
+    <form name="regForm">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" id="nameId"/></td>
+            </tr>
+            <tr>
+                <td>Benutzername:</td>
+                <td><input type="text" id="nicknameId"/></td>
+            </tr>
+            <tr>
+                <td>E-Mail:</td>
+                <td><input type="email" id="eMailId"/></td>
+            </tr>
+            <tr>
+                <td>Passwort:</td>
+                <td><input ng-model="password" type="password" id="passwordId"/></td>
+            </tr>
+            <tr>
+                <td>wiederholen:</td>
+                <td><input ng-model="passwordConfirm" type="password" data-match="password"/></td>
+            </tr>
 
-        <tr>
-            <td><input type="submit" ng-click="regController.start()" value="Abbrechen"/></td>
+            <tr>
+                <td><input type="submit" ng-click="regController.start()" value="Abbrechen"/></td>
 
-            <!--//TODO: prüfen, ob Benutzername noch nicht vergeben und PW = PW-->
-            <td><input type="submit" ng-click="regController.saveDeveloper()" onclick="location.href='ticket/mainScreen.html'" value="Registrieren"/></td>
-        </tr>
+                <!--//TODO: prüfen, ob Benutzername noch nicht vergeben und PW = PW-->
+                <td><input type="submit" ng-click="regController.saveDeveloper(regForm)"
+                           onclick="location.href='ticket/mainScreen.html'" value="Registrieren"/></td>
+            </tr>
 
-    </table>
+        </table>
+    </form>
 </section>

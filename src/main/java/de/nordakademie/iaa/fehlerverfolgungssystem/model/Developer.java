@@ -1,11 +1,15 @@
 package de.nordakademie.iaa.fehlerverfolgungssystem.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import java.io.Serializable;
 
 /**
  * Klasse für einen Entwickler
  */
+@Entity
 public class Developer implements Serializable{
     private static final long serialVersionUID = -505469822666978576L;
 
@@ -34,7 +38,15 @@ public class Developer implements Serializable{
      */
     public String authority;
 
-    @Column(nullable = false, columnDefinition ="VARCHAR2(45) default='ROLE_ADMIN")
+    /**
+     * Default value für authority setzen
+     */
+    @PrePersist
+    void preInsert() {
+        authority = "ROLE_ADMIN";
+    }
+
+    @Column(nullable = false)
     public String getAuthority() {
         return authority;
     }
@@ -53,6 +65,7 @@ public class Developer implements Serializable{
     }
 
     @Column(nullable = false)
+    @Id
     public String getNickname() {
         return nickname;
     }

@@ -1,1 +1,1 @@
-INSERT INTO DEVELOPER VALUES ('testnick', 'Klarer Himmel', 'himmel@himmel.de', 'password')
+INSERT INTO DEVELOPER VALUES ('testnick', 'ROLE_ADMIN', 'himmel@himmel.de', 'Klara Himmel', 'password')

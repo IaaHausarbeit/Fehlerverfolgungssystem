@@ -102,7 +102,7 @@ controllers.controller('mainScreenController', ['$scope', function ($scope) {
 controllers.controller('startController', ['$scope', function ($scope) {
     this.registration = function (){
         $scope.switchToScreen($scope.screens.registrationScreen);
-    }
+    };
     this.login = function (){
         $scope.switchToScreen($scope.screens.ticketlistScreen);
     }
@@ -166,7 +166,7 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
      */
     this.start = function (){
         $scope.switchToScreen($scope.screens.startScreen);
-    }
+    };
 
     /**
      * Saves the Developer
@@ -174,11 +174,13 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
      */
     this.saveDeveloper = function (regForm) {
        /* var selected = $scope.model.selectedTicket;*/
-        var dev = $scope.formModel.formDeveloper;
+        //var dev = $scope.formModel.formDeveloper;
+        console.log("Hallo");
+        var dev = new Developer(document.getElementById("nameId").value, document.getElementById("nicknameId").value, document.getElementById("eMailId").value, document.getElementById("passwordId").value);
 
         if (regForm.$valid) {
             // do save data
-            ticketService.saveDeveloperWithPromise(dev)
+            developerService.saveDeveloperWithPromise(dev)
                 .success(function (data, status, headers, config) {
                     if ($scope.model.developer.indexOf(selected) === -1) {
                         $scope.model.developer.push(data);

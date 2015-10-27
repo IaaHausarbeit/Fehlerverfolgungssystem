@@ -18,3 +18,12 @@ resources.factory('Ticket', function () {
         this.commentaryList = commentaryList;
     };
 });
+
+resources.factory('Developer', function () {
+    return function (name, nickname, eMailAddress, password) {
+        this.name = name;
+        this.nickname = nickname;
+        this.eMailAddress = eMailAddress;
+        this.password = password;
+    };
+});
