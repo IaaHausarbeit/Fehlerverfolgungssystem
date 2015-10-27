@@ -2,6 +2,8 @@
     <meta charset="UTF-8">
     <title>Fehlerverfolgungssystem</title>
     <link rel="stylesheet" type="text/css" href="../look.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.min.css"/>
 </head>
 <section ng-controller="listController as listController">
     <form name="ticketForm" novalidate>
@@ -13,20 +15,22 @@
         <input type="submit" value="ansicht" ng-click="listController.editTicket(model.selectedTicket)"/>
 
         <p></p>
-
-        <table id="ticketList">
+<!--https://scotch.io/tutorials/sort-and-filter-a-table-using-angular-->
+        <table class="table table-bordered table-striped">
+            <thead>
             <tr>
-                <th>Nr.</th>
-                <th>Bezeichnung</th>
-                <th>Status</th>
-                <th>Beschreibung</th>
-                <th>Autor</th>
-                <th>angelegt</th>
-                <th>letzte &Auml;nderung</th>
+                <td>Nr.</td>
+                <td>Bezeichnung</td>
+                <td>Status</td>
+                <td>Beschreibung</td>
+                <td>Autor</td>
+                <td>angelegt am</td>
+                <td>letzte &Auml;nderung</td>
             </tr>
-            <tr ng-repeat="ticket in model.tickets"
-                ng-click="listController.selectTicket(model.selectedTicket)" ng-dblclick="listController.editTicket(model.selectedTicket)"
-                ng-class="{selectedTicket:(ticket == model.selectedTicket)}">
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="ticket in model.tickets | orderBy:sortType">
                 <td>{{ ticket.id }}</td>
                 <td>{{ticket.titel}}</td>
                 <td>{{ticket.status}}</td>
@@ -35,7 +39,20 @@
                 <td>{{ticket.createDateTimestamp}}</td>
                 <td>{{ticket.changeDateTimestamp}}</td>
             </tr>
+            </tbody>
         </table>
+
+            <!--<tr ng-repeat="ticket in model.tickets | orderBy:sortType"-->
+                <!--ng-click="listController.selectTicket(model.selectedTicket)" ng-dblclick="listController.editTicket(model.selectedTicket)"-->
+                <!--ng-class="{selectedTicket:(ticket == model.selectedTicket)}">-->
+                <!--<td>{{ ticket.id }}</td>-->
+                <!--<td>{{ticket.titel}}</td>-->
+                <!--<td>{{ticket.status}}</td>-->
+                <!--<td>{{ticket.description}}</td>-->
+                <!--<td>{{ticket.creator}}</td>-->
+                <!--<td>{{ticket.createDateTimestamp}}</td>-->
+                <!--<td>{{ticket.changeDateTimestamp}}</td>-->
+            <!--</tr>-->
 
     </form>
 

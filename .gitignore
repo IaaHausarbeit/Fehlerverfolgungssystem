@@ -1,5 +1,5 @@
 .idea/*
 *.iml
 target/*
-db/ticketsystem.trace.db
-db/ticketsystem.mv.db
+db/
+src/main/webapp/bower_components/
