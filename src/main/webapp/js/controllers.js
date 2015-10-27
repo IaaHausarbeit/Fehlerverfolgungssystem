@@ -226,7 +226,7 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
     };
 
     // Auswahlfelder für den Ticketstatus
-    $scope.stateOptions = [{ name: "Angelegt", id: 1 }, { name: "In Bearbeitung", id: 2 }, {name: "In Bearbeitung", id: 3}, {name: "Abgelehnt", id: 4}, {name: "Wiedereroeffnet", id: 5}, {name: "Geschlossen", id: 6}];
+    $scope.stateOptions = [{ name: "Angelegt", id: 1 }, { name: "In Bearbeitung", id: 2 }, {name: "Behoben", id: 3}, {name: "Abgelehnt", id: 4}, {name: "Wiedereroeffnet", id: 5}, {name: "Geschlossen", id: 6}];
     $scope.selectedOption = $scope.stateOptions[0];
 
     // Set up the form model. //TODO angucken
