@@ -29,7 +29,7 @@ services.service('ticketService', ['$http', function ($http) {
      * @returns {HttpPromise}
      */
     this.listCommentariesWithPromise = function () {
-        return $http.get('rest/commentarylist');
+        return $http.get('../rest/commentarylist');
     };
 
     /**
@@ -38,7 +38,7 @@ services.service('ticketService', ['$http', function ($http) {
      * @returns {HttpPromise}
      */
     this.saveCommentaryWithPromise = function (commentary) {
-        return $http.put('rest/saveCommentary', commentary);
+        return $http.put('../rest/saveCommentary', commentary);
     };
 
 }]);
@@ -51,6 +51,6 @@ services.service('developerService', ['$http', function ($http) {
      * @returns {HttpPromise}.
      */
     this.saveDeveloperWithPromise = function (developer) {
-        return $http.put('rest/saveDeveloper', developer);
+        return $http.put('../rest/saveDeveloper', developer);
     };
 }]);

@@ -182,7 +182,7 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
 
 //TODO!! F�r Edit / Create
 // Set up the form controller.
-controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', function ($scope, Ticket, ticketService, Commentary, $http) {
+controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', 'Commentary', function ($scope, Ticket, ticketService, Commentary, $http) {
     // Object containing the error messages.
     var messages = {
         errors: {
@@ -246,11 +246,11 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
                 selected.commentaryList = edited.commentaryList;
             }*/
 
-            var commentary = new Commentary(null, document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
+            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
              ticketService.saveCommentaryWithPromise(commentary)
              .success(function (data, status, headers, config) {
              if ($scope.model.commentaryList.indexOf(commentary) === -1) {
-             $scope.model.commentaryList.push(data);
+                $scope.model.commentaryList.push(data);
              }
              }).error(function (data, status, headers, config) {
              alert("Fehler beim Speichern.");
