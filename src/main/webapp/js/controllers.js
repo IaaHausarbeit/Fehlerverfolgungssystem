@@ -6,7 +6,7 @@
 var controllers = angular.module('controllers', ['resources', 'services']);
 
 /*TODO: regController!! Im Moment ruft der nur die Ticketlist auf, ohne Benutzername, E-Mail Adresse und PW
-abzugleichen und zu speichern.*/
+ abzugleichen und zu speichern.*/
 
 
 //Controller, um zwischen den Seiten hin und her zu springen!
@@ -100,16 +100,14 @@ controllers.controller('mainScreenController', ['$scope', function ($scope) {
 //TODO STARTSEITE!
 //Set up the start controller.
 controllers.controller('startController', ['$scope', function ($scope) {
-    this.registration = function (){
+    this.registration = function () {
         $scope.switchToScreen($scope.screens.registrationScreen);
     };
-    this.login = function (){
+    this.login = function () {
         $scope.switchToScreen($scope.screens.ticketlistScreen);
     }
 
 }]);
-
-
 
 
 //TODO: ListController anlegen mit den n�tigen Methoden
@@ -167,7 +165,7 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
     /**
      * cancel
      */
-    this.start = function (){
+    this.start = function () {
         $scope.switchToScreen($scope.screens.startScreen);
     };
 
@@ -176,7 +174,7 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
      * @param regForm The form object of the ticket.
      */
     this.saveDeveloper = function (regForm) {
-       /* var selected = $scope.model.selectedTicket;*/
+        /* var selected = $scope.model.selectedTicket;*/
         //var dev = $scope.formModel.formDeveloper;
         console.log("Hallo");
         var dev = new Developer(document.getElementById("nameId").value, document.getElementById("nicknameId").value, document.getElementById("eMailId").value, document.getElementById("passwordId").value);
@@ -206,15 +204,13 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
             if (element.$error.required) {
                 message = messages.errors.required;
             } else {
-             message = messages.errors.unknown;
-             }
+                message = messages.errors.unknown;
+            }
         }
         return message;
     };
 
 }]);
-
-
 
 
 //TODO!! F�r Edit / Create
@@ -223,37 +219,36 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
     // Object containing the error messages.
     var messages = {
         errors: {
-            required: 'Please enter a value!'
-            /*number: 'Please enter a number!',
-            min: 'The number is smaller than the minimum allowed!',
-            unknown: 'Please enter a valid value!'*/
+            required: 'Pflichtfeld!'
         }
     };
 
-    // Auswahlfelder für den Ticketstatus
-    if ($scope.model.selectedTicket.status == null) {
-        $scope.stateOptions = [{name: "Angelegt", id: 1}];
-    } else if ($scope.model.selectedTicket.status == 1) {
-        $scope.stateOptions = [{name: "In Bearbeitung", id: 2}];
-    } else if ($scope.model.selectedTicket.status == 2) {
-        $scope.stateOptions = [{name: "Behoben", id: 3}, {name: "Abgelehnt", id: 4}];
-    } else if ($scope.model.selectedTicket.status == 3 || $scope.mocel.selectedTicket.status == 4) {
-        $scope.stateOptions = [{name: "Geschlossen", id: 6}, {name: "Wiedereroeffnet", id: 5}];
-    } else if ($scope.model.selectedTicket.status == 5) {
-        $scope.stateOptions = [{name: "In Bearbeitung", id: 2}];
-    }
+       // Auswahlfelder für den Ticketstatus
+    /* if ($scope.model.selectedTicket.status == null) {
+     $scope.stateOptions = [{name: "Angelegt", id: 1}];
+     } else if ($scope.model.selectedTicket.status == 1) {
+     $scope.stateOptions = [{name: "In Bearbeitung", id: 2}];
+     } else if ($scope.model.selectedTicket.status == 2) {
+     $scope.stateOptions = [{name: "Behoben", id: 3}, {name: "Abgelehnt", id: 4}];
+     } else if ($scope.model.selectedTicket.status == 3 || $scope.mocel.selectedTicket.status == 4) {
+     $scope.stateOptions = [{name: "Geschlossen", id: 6}, {name: "Wiedereroeffnet", id: 5}];
+     } else if ($scope.model.selectedTicket.status == 5) {
+     $scope.stateOptions = [{name: "In Bearbeitung", id: 2}];
+     }
+     $scope.selectedOption = $scope.stateOptions[0];*/
+    $scope.stateOptions = [{name: "Angelegt", id: 1}, {name: "In Bearbeitung", id: 2}, {
+        name: "Behoben",
+        id: 3
+    }, {name: "Abgelehnt", id: 4}, {name: "Wiedereroeffnet", id: 5}, {name: "Geschlossen", id: 6}];
     $scope.selectedOption = $scope.stateOptions[0];
-/*
-    $scope.stateOptions = [{ name: "Angelegt", id: 1 }, { name: "In Bearbeitung", id: 2 }, {name: "Behoben", id: 3}, {name: "Abgelehnt", id: 4}, {name: "Wiedereroeffnet", id: 5}, {name: "Geschlossen", id: 6}];
-    $scope.selectedOption = $scope.stateOptions[0];*/
 
     // Set up the form model. //TODO angucken
     $scope.formModel = {
         isEdit: $scope.model.selectedTicket.titel && $scope.model.selectedTicket.description,
-        formTicket: new Ticket($scope.model.selectedTicket.id, $scope.model.selectedTicket.status,
-                    $scope.model.selectedTicket.creator, $scope.model.selectedTicket.currentWorker,
-                    $scope.model.selectedTicket.createDateTimestamp, $scope.model.selectedTicket.changeDateTimestamp,
-                    $scope.model.selectedTicket.titel, $scope.model.selectedTicket.description)
+        formTicket: new Ticket($scope.model.selectedTicket.id, $scope.model.selectedTicket.titel, $scope.model.selectedTicket.status,
+            $scope.model.selectedTicket.description, $scope.model.selectedTicket.creator, $scope.model.selectedTicket.currentWorker,
+            $scope.model.selectedTicket.createDateTimestamp, $scope.model.selectedTicket.changeDateTimestamp, $scope.model.selectedTicket.commentaryList
+        )
     };
 
     /**
@@ -272,10 +267,11 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
         var edited = $scope.formModel.formTicket;
         if (editForm.$valid && selected && edited) {
             selected.id = edited.id;
-            selected.status = $scope.selectedOption.id-1;
+            selected.status = $scope.selectedOption.id - 1;
             selected.creator = edited.currentWorker ? edited.currentWorker : getLoginName();
-            selected.currentWorker = getLoginName(); //TODO Status hier mit reinziehen
-            selected.changeDateTimestamp = (new Date()).toJSON().slice(0,10);
+
+            selected.currentWorker = selected.status == $scope.selectedOption.id - 1 ? "": getLoginName(); //TODO Status hier mit reinziehen
+            selected.changeDateTimestamp = (new Date()).toJSON().slice(0, 10);
             selected.titel = edited.titel;
             selected.description = edited.description;
 
@@ -287,15 +283,15 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
                     }
                     $scope.switchToScreen($scope.screens.ticketlistScreen);
                 }).error(function (data, status, headers, config) {
-                    alert("an error occured while saving");
+                    alert("Fehler beim Speichern.");
                 });
         }
     };
 
-    function getLoginName(){
+    function getLoginName() {
         var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "../rest/getUserName", false );
-        xmlHttp.send( null );
+        xmlHttp.open("GET", "../rest/getUserName", false);
+        xmlHttp.send(null);
         return xmlHttp.responseText;
     }
 
