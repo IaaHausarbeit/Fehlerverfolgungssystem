@@ -87,7 +87,10 @@
             </thead>
 
             <tbody>
-            <tr ng-repeat="ticket in model.tickets | orderBy:sortType:sortReverse | filter:searchTickets">
+            <tr ng-repeat="ticket in model.tickets | orderBy:sortType:sortReverse | filter:searchTickets"
+                ng-dblclick="listController.editTicket(ticket)"
+                ng-class="{selectedTicket:(ticket == model.selectedTicket)}">
+
                 <td><div style="max-height:100px; overflow:hidden">{{ ticket.id }}</div></td>
                 <td><div style="max-height:100px; overflow:hidden">{{ticket.titel}}</div></td>
                 <td><div style="max-height:100px; overflow:hidden">{{ticket.status}}</div></td>

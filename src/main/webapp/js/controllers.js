@@ -117,19 +117,11 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
     $scope.sortReverse  = false;  // set the default sort order
 
     /**
-     * Selects a ticket.
-     * @param selected The ticket to be selected.
-     */
-    this.selectTicket = function (selected) {
-        $scope.model.selectedTicket = selected;
-    };
-
-    /**
      * Starts the editing of the ticket.
      * @param selected The ticket to be edited.
      */
     this.editTicket = function (selected) {
-        this.selectTicket(selected);
+        $scope.model.selectedTicket = selected;
         $scope.switchToScreen($scope.screens.editScreen);
     };
 
