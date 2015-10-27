@@ -2,6 +2,7 @@ package de.nordakademie.iaa.fehlerverfolgungssystem.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Klasse für Kommentare an einem Ticket
@@ -21,7 +22,7 @@ public class Commentary implements Serializable{
     /**
      * Datum des Kommentars
      */
-    private Long date;
+    private Date date;
 
     /**
      * Kommentartext
@@ -55,11 +56,12 @@ public class Commentary implements Serializable{
     }
 
     @Column(nullable = false)
-    public Long getDate() {
+    @Temporal(TemporalType.DATE)
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
