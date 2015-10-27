@@ -71,7 +71,7 @@
                 <th>Kommentar</th>
             </tr>
             <!--TODO: Mal sehen, was hier noch so für Parameter rein müssen....-->
-            <tr ng-repeat="commentary in model.commentary | orderBy:['date']">
+            <tr ng-repeat="commentary in formModel.formTicket.commentaryList | orderBy:['date']">
                 <td>{{commentary.date}}</td>
                 <td>{{commentary.creator}}</td>
                 <td>{{commentary.text}}</td>

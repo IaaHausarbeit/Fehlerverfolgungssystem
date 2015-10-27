@@ -265,6 +265,7 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', f
             selected.changeDateTimestamp = (new Date()).toJSON().slice(0, 10);
             selected.titel = edited.titel;
             selected.description = edited.description;
+            selected.commentaryList = edited.commentaryList;
 
             // do save data
             ticketService.saveTicketWithPromise(selected)

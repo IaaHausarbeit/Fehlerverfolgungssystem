@@ -57,10 +57,18 @@ public class Ticket implements Serializable {
     /**
      * Liste aller Kommentare am Ticket --> durch onetomany ohne Liste realisieren
      */
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ticket_id")
+
     private Set<Commentary> commentaryList;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ticket_id")
+    public Set<Commentary> getCommentaryList() {
+        return commentaryList;
+    }
+
+    public void setCommentaryList(Set<Commentary> commentaryList) {
+        this.commentaryList = commentaryList;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
