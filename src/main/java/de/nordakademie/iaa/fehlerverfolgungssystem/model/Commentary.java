@@ -1,5 +1,7 @@
 package de.nordakademie.iaa.fehlerverfolgungssystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -37,6 +39,8 @@ public class Commentary implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "TICKET_ID")
+    @JsonIgnore //This way you will no longer have a Json serializing-time circular dependency.
+    // https://stackoverflow.com/questions/26657259/hibernate-and-json-is-there-a-definitive-solution-to-circular-dependencies
     public Ticket getTicket() {
         return ticket;
     }

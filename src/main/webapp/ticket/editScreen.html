@@ -1,3 +1,9 @@
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../look.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.min.css"/>
+</head>
 <section ng-controller="formController as formController">
     <form name="ticketForm" novalidate>
         <h2>Detailansicht</h2>
@@ -64,14 +70,15 @@
 
         <h3>Kommentare</h3>
 
-        <table>
+        <table class="table table-bordered table-striped" id="commentaryTable">
             <tr>
-                <th>timestamp</th>
+                <th>Datum</th>
                 <th>Autor</th>
                 <th>Kommentar</th>
             </tr>
             <!--TODO: Mal sehen, was hier noch so für Parameter rein müssen....-->
-            <tr ng-repeat="commentary in formModel.formTicket.commentaryList | orderBy:['date']">
+            <tr ng-repeat="commentary in formModel.formTicket.commentaryList | orderBy:['date']:sortType:sortReverse">
+                <!-- chronologisch aufsteigend bedeutet für uns: der neuese Kommentar zuerst-->
                 <td>{{commentary.date}}</td>
                 <td>{{commentary.creator}}</td>
                 <td>{{commentary.text}}</td>

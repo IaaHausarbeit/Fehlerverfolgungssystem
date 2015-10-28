@@ -107,7 +107,6 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
      * Starts the creation of a new ticket.
      */
     this.newTicket = function () {
-        //TODO
         $scope.model.selectedTicket = new Ticket();
         $scope.switchToScreen($scope.screens.editScreen);
     };
@@ -123,7 +122,6 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
 }]);
 
 
-//TODO REGISTRIERUNGSSEITE
 //Set up the registration controller.
 controllers.controller('regController', ['$scope', 'Developer', 'developerService', function ($scope, Developer, developerService) {
     var messages = {
@@ -241,10 +239,11 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
             selected.changeDateTimestamp = (new Date()).toJSON().slice(0, 10);
             selected.titel = edited.titel;
             selected.description = edited.description;
-           /* if(edited.commentaryList !== undefined){
-                edited.commentaryList.push(document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
-                selected.commentaryList = edited.commentaryList;
-            }*/
+            var commentary = new Commentary(null, edited.id, document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
+            if(edited.commentaryList === undefined) {
+                edited.commentaryList = [];
+            }
+            edited.commentaryList.push(commentary);
 
             // do save data
             ticketService.saveTicketWithPromise(selected)
@@ -253,16 +252,6 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
                         $scope.model.tickets.push(data);
                     }
                     $scope.switchToScreen($scope.screens.ticketlistScreen);
-                }).error(function (data, status, headers, config) {
-                    alert("Fehler beim Speichern.");
-                });
-
-            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
-            ticketService.saveCommentaryWithPromise(commentary)
-                .success(function (data, status, headers, config) {
-                    if ($scope.model.commentaryList.indexOf(commentary) === -1) {
-                        $scope.model.commentaryList.push(data);
-                    }
                 }).error(function (data, status, headers, config) {
                     alert("Fehler beim Speichern.");
                 });

@@ -1,3 +1,6 @@
 input#search {
     width: 20%;
 }
+table#commentaryTable {
+    width: 50%;
+}
