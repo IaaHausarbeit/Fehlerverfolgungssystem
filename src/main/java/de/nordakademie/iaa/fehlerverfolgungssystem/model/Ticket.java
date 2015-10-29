@@ -60,15 +60,15 @@ public class Ticket implements Serializable {
      * Liste aller Kommentare am Ticket
      */
 
-    private Set<Commentary> commentaryList;
+    private List<Commentary> commentaryList;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "ticket_id")
-    public Set<Commentary> getCommentaryList() {
+    public List<Commentary> getCommentaryList() {
         return commentaryList;
     }
 
-    public void setCommentaryList(Set<Commentary> commentaryList) {
+    public void setCommentaryList(List<Commentary> commentaryList) {
         this.commentaryList = commentaryList;
     }
 

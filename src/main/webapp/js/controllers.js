@@ -227,7 +227,8 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
             selected.changeDateTimestamp = (new Date()).toJSON().slice(0, 10);
             selected.titel = edited.titel;
             selected.description = edited.description;
-            var commentary = new Commentary(null, edited.id, document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
+            selected.commentaryList = edited.commentaryList;
+            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
             if(edited.commentaryList === undefined) {
                 edited.commentaryList = [];
             }
