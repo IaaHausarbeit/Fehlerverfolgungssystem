@@ -9,9 +9,47 @@
     <script type="application/javascript" src="js/resources.js"></script>
     <script type="application/javascript" src="js/services.js"></script>
 </head>
-<body ng-controller="mainController as mainController">
+<body>
 <h1>Willkommen im Ticketverfolgungssystem!</h1>
-    <ng-include src="mainController.getCurrentScreenSource()"></ng-include>
+
+<section ng-controller="regController as regController">
+    <h2>Registrieren</h2>
+
+    <form name="regForm">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" id="nameId"/></td>
+            </tr>
+            <tr>
+                <td>Benutzername:</td>
+                <td><input type="text" id="nicknameId"/></td>
+            </tr>
+            <tr>
+                <td>E-Mail:</td>
+                <td><input type="email" id="eMailId"/></td>
+            </tr>
+            <tr>
+                <td>Passwort:</td>
+                <td><input ng-model="password" type="password" id="passwordId"/></td>
+            </tr>
+            <tr>
+                <td>wiederholen:</td>
+                <td><input ng-model="passwordConfirm" type="password" data-match="password"/></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" onclick="location.href='ticket/mainScreen.html'" value="zum Login"/></td>
+
+                <!--//TODO: prüfen, ob Benutzername noch nicht vergeben und PW = PW-->
+                <td><input type="submit" ng-click="regController.saveDeveloper(regForm)"
+                           onclick="location.href='ticket/mainScreen.html'" value="Registrieren"/></td>
+            </tr>
+
+        </table>
+    </form>
+</section>
+
 </body>
 </html>
 

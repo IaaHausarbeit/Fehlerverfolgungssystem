@@ -1,45 +1,11 @@
 /**
- * The controllers.
+ * Controller
  */
 'use strict';
 
 var controllers = angular.module('controllers', ['resources', 'services']);
 
 //Controller, um zwischen den Seiten hin und her zu springen!
-//Set up main controller.
-controllers.controller('mainController', ['$scope', function ($scope) {
-    // Set up the screens object
-    $scope.screens = {
-        startScreen: ['startScreen', 'start.html'],
-        ticketlistScreen: ['ticketlistScreen', 'ticket/ticketlist.html'],
-        editScreen: ['editScreen', 'ticket/editScreen.html'],
-        registrationScreen: ['registrationScreen', 'registration.html']
-    };
-
-    // Set up the scope model
-    $scope.model = {
-        screen: $scope.screens.startScreen
-    };
-
-    /**
-     * Switches to a specific screen.
-     * @param newScreen The current screen (an array).
-     */
-    $scope.switchToScreen = function (newScreen) {
-        if (angular.isArray(newScreen) && newScreen.length === 2) {
-            $scope.model.screen = newScreen;
-        }
-    };
-
-    /**
-     * Returns the file name of the current screen.
-     * @returns a string.
-     */
-    this.getCurrentScreenSource = function () {
-        return $scope.model.screen[1];
-    };
-}]);
-
 //mainScreenController
 controllers.controller('mainScreenController', ['$scope', function ($scope) {
     // Set up the screens object
