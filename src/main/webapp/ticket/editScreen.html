@@ -60,7 +60,25 @@
                            ng-click="formController.saveTicket(ticketForm)"/>
                     <!--checkRole disabled den Button, falls derjenige nicht bearbeiten darf.-->
                 </td>
+
             </tr>
+            <tr>
+                <td></td>
+                <td>
+                   <span class="error" ng-show="formController.checkRole()">
+                       <font color="red"> Sie besitzen nicht die nötige Berechtigung!</font>
+                   </span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                   <span class="error" ng-show="formController.checkStatus()">
+                        <font color="red"> Bitte wählen Sie den Status gemäß des Workflows aus! </font>
+                   </span>
+                </td>
+            </tr>
+
         </table>
 
         <p></p>
@@ -77,7 +95,6 @@
                 <th>Autor</th>
                 <th>Kommentar</th>
             </tr>
-            <!--TODO: Mal sehen, was hier noch so für Parameter rein müssen....-->
             <tr ng-repeat="commentary in formModel.formTicket.commentaryList | orderBy:['date']:sortType:sortReverse">
                 <!-- chronologisch aufsteigend bedeutet für uns: der neuese Kommentar zuerst-->
                 <td>{{commentary.date}}</td>
