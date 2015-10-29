@@ -56,9 +56,9 @@
                 </td>
                 <td>
                     <input type="submit" value="best&auml;tigen"
-                           ng-disabled="ticketForm.$invalid || ticketForm.$pristine"
+                           ng-disabled="ticketForm.$invalid || ticketForm.$pristine || formController.checkRole() || formController.checkStatus()"
                            ng-click="formController.saveTicket(ticketForm)"/>
-                    <!--oder nicht die richtige Rolle - muss noch abgefragt werden-->
+                    <!--checkRole disabled den Button, falls derjenige nicht bearbeiten darf.-->
                 </td>
             </tr>
         </table>

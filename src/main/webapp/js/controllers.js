@@ -169,6 +169,49 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
     };
 
     /**
+     * Nur die richtige Rolle darf bearbeiten, sonst ist der Button disabled.
+     */
+    this.checkRole = function() {
+        var selected = $scope.model.selectedTicket;
+        //wenn Ticket in Bearbeitung und angemeldeter User nicht Bearbeiter
+        if(selected.status == "IN_BEARBEITUNG" && selected.currentWorker != getLoginName()){
+            return true;
+        }
+        //wenn Ticket behoben oder abgelehnt und angemeldeter User nicht Autor
+        if((selected.status == "BEHOBEN" || selected.status == "ABGELEHNT") && selected.creator != getLoginName()){
+            return true;
+        }
+    };
+
+    /**
+     * Nur die richtige Rolle darf bearbeiten, sonst ist der Button disabled.
+     */
+    this.checkStatus = function() {
+        var selected = $scope.model.selectedTicket;
+       // Beim Anlegen ist er null.
+        if(selected.status == null && $scope.selectedOption.id != 1){
+           return true;
+        }
+        if(selected.status == "ANGELEGT" && $scope.selectedOption.id != 2){
+            return true;
+        }
+
+        if(selected.status == "IN_BEARBEITUNG" && ($scope.selectedOption.id != 3 && $scope.selectedOption.id != 4)){
+            return true;
+        }
+        if((selected.status == "BEHOBEN" || selected.status == "ABGELEHNT") && ($scope.selectedOption.id != 5 && $scope.selectedOption.id != 6) ){
+            return true;
+        }
+        if(selected.status == "WIEDEREROEFFNET" && $scope.selectedOption.id != 2){
+            return true;
+        }
+        if(selected.status == "GESCHLOSSEN"){
+            return true;
+        }
+    };
+
+
+    /**
      * Speichern
      * @param editForm
      */
