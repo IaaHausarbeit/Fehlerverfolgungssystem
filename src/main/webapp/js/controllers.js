@@ -8,13 +8,13 @@ var controllers = angular.module('controllers', ['resources', 'services']);
 //Controller, um zwischen den Seiten hin und her zu springen!
 //mainScreenController
 controllers.controller('mainScreenController', ['$scope', function ($scope) {
-    // Set up the screens object
+    // Die Screens
     $scope.screens = {
         ticketlistScreen: ['ticketlistScreen', 'ticketlist.html'],
         editScreen: ['editScreen', 'editScreen.html']
     };
 
-    // Set up the scope model
+    // Das model
     $scope.model = {
         tickets: [],
         selectedTicket: null,
@@ -22,8 +22,8 @@ controllers.controller('mainScreenController', ['$scope', function ($scope) {
     };
 
     /**
-     * Switches to a specific screen.
-     * @param newScreen The current screen (an array).
+     * zum neuen Screen wechseln
+     * @param newScreen
      */
     $scope.switchToScreen = function (newScreen) {
         if (angular.isArray(newScreen) && newScreen.length === 2) {
@@ -32,7 +32,7 @@ controllers.controller('mainScreenController', ['$scope', function ($scope) {
     };
 
     /**
-     * Returns the file name of the current screen.
+     * Gibt den ab´ktuellen Screen zurück
      * @returns a string.
      */
     this.getCurrentScreenSource = function () {
@@ -41,28 +41,14 @@ controllers.controller('mainScreenController', ['$scope', function ($scope) {
 }]);
 
 
-//TODO STARTSEITE!
-//Set up the start controller.
-controllers.controller('startController', ['$scope', function ($scope) {
-    this.registration = function () {
-        $scope.switchToScreen($scope.screens.registrationScreen);
-    };
-    this.login = function () {
-        $scope.switchToScreen($scope.screens.ticketlistScreen);
-    }
-
-}]);
-
-
-//TODO: ListController anlegen mit den n�tigen Methoden
-// Set up the list controller.
+// listController
 controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', function ($scope, Ticket, ticketService) {
     $scope.sortType     = 'number'; // set the default sort type
     $scope.sortReverse  = false;  // set the default sort order
 
     /**
-     * Starts the editing of the ticket.
-     * @param selected The ticket to be edited.
+     * Startet die Bearbeitung
+     * @param selected
      */
     this.editTicket = function (selected) {
         $scope.model.selectedTicket = selected;
@@ -70,37 +56,32 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
     };
 
     /**
-     * Starts the creation of a new ticket.
+     * Startet die Erstellung eines neuen Tickets
      */
     this.newTicket = function () {
         $scope.model.selectedTicket = new Ticket();
         $scope.switchToScreen($scope.screens.editScreen);
     };
 
-    // List the current tickets.
+    // Listet alle Tickets auf
     ticketService.listTicketsWithPromise()
         .success(function (data, status, headers, config) {
             $scope.model.tickets = data;
         })
         .error(function (data, status, headers, config) {
-            alert("an error occured while loading");
+            alert("Fehler beim Laden!");
         });
 }]);
 
 
-//Set up the registration controller.
+//regController für die Registrierung
 controllers.controller('regController', ['$scope', 'Developer', 'developerService', function ($scope, Developer, developerService) {
     var messages = {
         errors: {
-            required: 'Please enter a value!',
+            required: 'Pflichtfeld!',
             unknown: 'Please enter a valid value!'
+            //brauchen wir die?
         }
-    };
-    /**
-     * cancel
-     */
-    this.start = function () {
-        $scope.switchToScreen($scope.screens.startScreen);
     };
 
     /**
@@ -119,14 +100,14 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
                     }
                     $scope.switchToScreen($scope.screens.ticketlistScreen);
                 }).error(function (data, status, headers, config) {
-                    alert("an error occured while saving");
+                    alert("Fehler beim Speichern!");
                 });
         }
     };
 
     /**
-     * Returns the error message for the given element.
-     * @param element The element.
+     * Gibt die Fehlermeldung zurück
+     * @param element
      * @returns a string.
      */
     this.getErrorMessage = function (element) {
@@ -143,11 +124,8 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
 
 }]);
 
-
-//TODO!! F�r Edit / Create
-// Set up the form controller.
+// formController
 controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', 'Commentary', function ($scope, Ticket, ticketService, Commentary, $http) {
-    // Object containing the error messages.
     var messages = {
         errors: {
             required: 'Pflichtfeld!'
@@ -174,7 +152,7 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
     }, {name: "Abgelehnt", id: 4}, {name: "Wiedereroeffnet", id: 5}, {name: "Geschlossen", id: 6}];
     $scope.selectedOption = $scope.stateOptions[0];
 
-    // Set up the form model. //TODO angucken
+    // das model
     $scope.formModel = {
         isEdit: $scope.model.selectedTicket.titel && $scope.model.selectedTicket.description,
         formTicket: new Ticket($scope.model.selectedTicket.id, $scope.model.selectedTicket.titel, $scope.model.selectedTicket.status,
@@ -184,15 +162,15 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
     };
 
     /**
-     * Cancels the editing.
+     * Abbrechen
      */
     this.cancel = function () {
         $scope.switchToScreen($scope.screens.ticketlistScreen);
     };
 
     /**
-     * Saves the changes.
-     * @param editForm The form object of the ticket.
+     * Speichern
+     * @param editForm
      */
     this.saveTicket = function (editForm) {
         var selected = $scope.model.selectedTicket;
@@ -200,7 +178,8 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
         if (editForm.$valid && selected && edited) {
             selected.id = edited.id;
             selected.status = $scope.selectedOption.id - 1;
-            selected.creator = edited.currentWorker ? edited.currentWorker : getLoginName();
+            if($scope.selectedOption.id == 1) {selected.creator = getLoginName();}
+            //nur beim 1. Anlegen (also status = angelegt), soll der creator gesetzt werden
             selected.currentWorker = $scope.selectedOption.id == 2 ? getLoginName(): null;
             //wenn das Ticket in den Status "in Bearbeitung" überführt wird, ist der Bearbeiter = LoginName und sonst null
             selected.changeDateTimestamp = (new Date()).toJSON().slice(0, 10);
@@ -233,8 +212,8 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
     }
 
     /**
-     * Returns the error message for the given element.
-     * @param element The element.
+     * Fehlermeldung
+     * @param element
      * @returns a string.
      */
     this.getErrorMessage = function (element) {

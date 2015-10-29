@@ -19,23 +19,23 @@
         <table>
             <tr>
                 <td>Name:</td>
-                <td><input type="text" id="nameId"/></td>
+                <td><input type="text" id="nameId" required/></td>
             </tr>
             <tr>
                 <td>Benutzername:</td>
-                <td><input type="text" id="nicknameId"/></td>
+                <td><input type="text" id="nicknameId" required/></td>
             </tr>
             <tr>
                 <td>E-Mail:</td>
-                <td><input type="email" id="eMailId"/></td>
+                <td><input type="email" id="eMailId" required/></td>
             </tr>
             <tr>
                 <td>Passwort:</td>
-                <td><input ng-model="password" type="password" id="passwordId"/></td>
+                <td><input ng-model="password" type="password" id="passwordId" required/></td>
             </tr>
             <tr>
                 <td>wiederholen:</td>
-                <td><input ng-model="passwordConfirm" type="password" data-match="password"/></td>
+                <td><input ng-model="passwordConfirm" type="password" data-match="password" required/></td>
             </tr>
 
             <tr>
