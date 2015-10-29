@@ -79,8 +79,7 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
     var messages = {
         errors: {
             required: 'Pflichtfeld!',
-            unknown: 'Please enter a valid value!'
-            //brauchen wir die?
+            unknown: 'ungültiger Wert!'
         }
     };
 
@@ -102,6 +101,18 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
                 }).error(function (data, status, headers, config) {
                     alert("Fehler beim Speichern!");
                 });
+        }
+    };
+
+
+    /**
+     * Stimmen die Passwörter überein?
+     */
+    this.checkPassword = function (){
+        console.log(document.getElementById("passwordConfirmId").value);
+        console.log(document.getElementById("passwordId").value);
+        if(document.getElementById("passwordConfirmId").value != document.getElementById("passwordId").value){
+            return true;
         }
     };
 

@@ -19,31 +19,66 @@
         <table>
             <tr>
                 <td>Name:</td>
-                <td><input type="text" id="nameId" required/></td>
+                <td><input type="text" id="nameId" name="name" ng-model="regModel.name" required/></td>
+                <td>
+                  <span class="error" ng-show="regForm.name.$invalid">
+                    {{regController.getErrorMessage(regForm.name)}}
+                  </span>
+                </td>
             </tr>
             <tr>
                 <td>Benutzername:</td>
-                <td><input type="text" id="nicknameId" required/></td>
+                <td><input type="text" id="nicknameId" name="nickname" ng-model="regModel.nickname" required/></td>
+                <td>
+                  <span class="error" ng-show="regForm.nickname.$invalid">
+                    {{regController.getErrorMessage(regForm.nickname)}}
+                  </span>
+                </td>
             </tr>
             <tr>
                 <td>E-Mail:</td>
-                <td><input type="email" id="eMailId" required/></td>
+                <td><input type="email" id="eMailId" name="email" ng-model="regModel.email" required/></td>
+                <td>
+                  <span class="error" ng-show="regForm.email.$invalid">
+                    {{regController.getErrorMessage(regForm.email)}}
+                  </span>
+                </td>
             </tr>
             <tr>
                 <td>Passwort:</td>
-                <td><input ng-model="password" type="password" id="passwordId" required/></td>
+                <td><input ng-model="password" type="password" id="passwordId" name="password" ng-model="regModel.password" required/></td>
+                <td>
+                  <span class="error" ng-show="regForm.password.$invalid">
+                    {{regController.getErrorMessage(regForm.password)}}
+                  </span>
+                </td>
             </tr>
             <tr>
                 <td>wiederholen:</td>
-                <td><input ng-model="passwordConfirm" type="password" data-match="password" required/></td>
+                <td><input ng-model="passwordConfirm" type="password" id="passwordConfirmId" name="passwordConfirm" ng-model="regModel.passwordConfirm" required/></td>
+                <td>
+                  <span class="error" ng-show="regForm.passwordConfirm.$invalid">
+                    {{regController.getErrorMessage(regForm.passwordConfirm)}}
+                  </span>
+                </td>
             </tr>
 
             <tr>
                 <td><input type="submit" onclick="location.href='ticket/mainScreen.html'" value="zum Login"/></td>
 
                 <!--//TODO: prüfen, ob Benutzername noch nicht vergeben und PW = PW-->
-                <td><input type="submit" ng-click="regController.saveDeveloper(regForm)"
+                <td><input type="submit"
+                           ng-disabled="regForm.$invalid || regController.checkPassword()"
+                           ng-click="regController.saveDeveloper(regForm)"
                            onclick="location.href='ticket/mainScreen.html'" value="Registrieren"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <span class="error" ng-show="regController.checkPassword()">
+                       <font color="red"> Passwörter stimmen nicht überein! </font>
+                   </span>
+                </td>
             </tr>
 
         </table>
