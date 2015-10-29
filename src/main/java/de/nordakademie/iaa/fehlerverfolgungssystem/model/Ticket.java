@@ -57,7 +57,7 @@ public class Ticket implements Serializable {
     private String description;
 
     /**
-     * Liste aller Kommentare am Ticket --> durch onetomany ohne Liste realisieren
+     * Liste aller Kommentare am Ticket
      */
 
     private Set<Commentary> commentaryList;
