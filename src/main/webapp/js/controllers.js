@@ -148,6 +148,7 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
         {name: "Abgelehnt", id: 4}, {name: "Wiedereroeffnet", id: 5}, {name: "Geschlossen", id: 6}];
     $scope.selectedOption = $scope.stateOptions[0];
 
+
     // das model
     $scope.formModel = {
         isEdit: $scope.model.selectedTicket.titel && $scope.model.selectedTicket.description,
@@ -216,6 +217,8 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
         var edited = $scope.formModel.formTicket;
         if (editForm.$valid && selected && edited) {
             selected.id = edited.id;
+            //nicht von der selectedOption, sondern vom Button...der noch zu implementieren ist!
+            //Button dann je nach status show/hide
             selected.status = $scope.selectedOption.id - 1;
             if($scope.selectedOption.id == 1) {selected.creator = getLoginName();}
             //nur beim 1. Anlegen (also status = angelegt), soll der creator gesetzt werden
