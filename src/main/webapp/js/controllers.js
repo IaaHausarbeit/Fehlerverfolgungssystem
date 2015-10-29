@@ -132,24 +132,9 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
         }
     };
 
-    //TODO
-       // Auswahlfelder für den Ticketstatus
-    /* if ($scope.model.selectedTicket.status == null) {
-     $scope.stateOptions = [{name: "Angelegt", id: 1}];
-     } else if ($scope.model.selectedTicket.status == 1) {
-     $scope.stateOptions = [{name: "In Bearbeitung", id: 2}];
-     } else if ($scope.model.selectedTicket.status == 2) {
-     $scope.stateOptions = [{name: "Behoben", id: 3}, {name: "Abgelehnt", id: 4}];
-     } else if ($scope.model.selectedTicket.status == 3 || $scope.mocel.selectedTicket.status == 4) {
-     $scope.stateOptions = [{name: "Geschlossen", id: 6}, {name: "Wiedereroeffnet", id: 5}];
-     } else if ($scope.model.selectedTicket.status == 5) {
-     $scope.stateOptions = [{name: "In Bearbeitung", id: 2}];
-     }
-     $scope.selectedOption = $scope.stateOptions[0];*/
-    $scope.stateOptions = [{name: "Angelegt", id: 1}, {name: "In Bearbeitung", id: 2}, {
-        name: "Behoben",
-        id: 3
-    }, {name: "Abgelehnt", id: 4}, {name: "Wiedereroeffnet", id: 5}, {name: "Geschlossen", id: 6}];
+    // Auswahlfelder für den Ticketstatus
+    $scope.stateOptions = [{name: "Angelegt", id: 1}, {name: "In Bearbeitung", id: 2}, {name: "Behoben", id: 3},
+        {name: "Abgelehnt", id: 4}, {name: "Wiedereroeffnet", id: 5}, {name: "Geschlossen", id: 6}];
     $scope.selectedOption = $scope.stateOptions[0];
 
     // das model
