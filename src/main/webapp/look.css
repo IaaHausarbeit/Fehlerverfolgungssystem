@@ -4,3 +4,9 @@ input#search {
 table#commentaryTable {
     width: 50%;
 }
+
+/*global für alle HTML-Dateien die gleiche Schriftart verwenden*/
+html *
+{
+    font-family: Arial !important;
+}
