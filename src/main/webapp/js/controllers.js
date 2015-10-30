@@ -143,12 +143,6 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
         }
     };
 
-    // Auswahlfelder für den Ticketstatus
-    $scope.stateOptions = [{name: "Angelegt", id: 1}, {name: "In Bearbeitung", id: 2}, {name: "Behoben", id: 3},
-        {name: "Abgelehnt", id: 4}, {name: "Wiedereroeffnet", id: 5}, {name: "Geschlossen", id: 6}];
-    $scope.selectedOption = $scope.stateOptions[0];
-
-
     // das model
     $scope.formModel = {
         isEdit: $scope.model.selectedTicket.titel && $scope.model.selectedTicket.description,
@@ -166,16 +160,17 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
     };
 
     /**
-     * Nur die richtige Rolle darf bearbeiten, sonst ist der Button disabled.
+     * Button nur visible machen, wenn die richtige Rolle angemeldet ist.
      */
     this.checkRole = function() {
+        var loginName = getLoginName();
         var selected = $scope.model.selectedTicket;
         //wenn Ticket in Bearbeitung und angemeldeter User nicht Bearbeiter
-        if(selected.status == "IN_BEARBEITUNG" && selected.currentWorker == getLoginName()){
+        if(selected.status == "IN_BEARBEITUNG" && selected.currentWorker == loginName){
             return true;
         }
         //wenn Ticket behoben oder abgelehnt und angemeldeter User nicht Autor
-        if((selected.status == "BEHOBEN" || selected.status == "ABGELEHNT") && selected.creator == getLoginName()){
+        if((selected.status == "BEHOBEN" || selected.status == "ABGELEHNT") && selected.creator == loginName){
             return true;
         }
     };
@@ -213,19 +208,20 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
         var selected = $scope.model.selectedTicket;
         var edited = $scope.formModel.formTicket;
         if (editForm.$valid && selected && edited) {
+            var loginName = getLoginName();
             selected.id = edited.id;
 
             selected.status = status;
             //nur beim 1. Anlegen (also status = angelegt), soll der creator gesetzt werden
-            if(status == 0) {selected.creator = getLoginName();}
+            if(status == 0) {selected.creator = loginName;}
             //wenn das Ticket in den Status "in Bearbeitung" überführt wird, ist der Bearbeiter = LoginName und sonst null
-            selected.currentWorker = status == 1? getLoginName(): null;
+            selected.currentWorker = status == 1? loginName: null;
 
             selected.changeDateTimestamp = (new Date()).toJSON().slice(0, 10);
             selected.titel = edited.titel;
             selected.description = edited.description;
             selected.commentaryList = edited.commentaryList;
-            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
+            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, loginName, (new Date()).toJSON().slice(0, 10));
             if(edited.commentaryList === undefined) {
                 edited.commentaryList = [];
             }
