@@ -24,23 +24,6 @@ services.service('ticketService', ['$http', function ($http) {
         return $http.put('../rest/saveTicket', ticket);
     };
 
-    /**
-     * Returns all commentary.
-     * @returns {HttpPromise}
-     */
-    this.listCommentariesWithPromise = function () {
-        return $http.get('../rest/commentarylist');
-    };
-
-    /**
-     * saves a commentary.
-     * @param commentary
-     * @returns {HttpPromise}
-     */
-    this.saveCommentaryWithPromise = function (commentary) {
-        return $http.put('../rest/saveCommentary', commentary);
-    };
-
 }]);
 
 // Set up the room service.

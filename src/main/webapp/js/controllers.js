@@ -170,12 +170,13 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
      */
     this.checkRole = function() {
         var selected = $scope.model.selectedTicket;
+        var loginName = getLoginName();
         //wenn Ticket in Bearbeitung und angemeldeter User nicht Bearbeiter
-        if(selected.status == "IN_BEARBEITUNG" && selected.currentWorker != getLoginName()){
+        if(selected.status == "IN_BEARBEITUNG" && selected.currentWorker != loginName){
             return true;
         }
         //wenn Ticket behoben oder abgelehnt und angemeldeter User nicht Autor
-        if((selected.status == "BEHOBEN" || selected.status == "ABGELEHNT") && selected.creator != getLoginName()){
+        if((selected.status == "BEHOBEN" || selected.status == "ABGELEHNT") && selected.creator != loginName){
             return true;
         }
     };
@@ -220,15 +221,16 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
             //nicht von der selectedOption, sondern vom Button...der noch zu implementieren ist!
             //Button dann je nach status show/hide
             selected.status = $scope.selectedOption.id - 1;
-            if($scope.selectedOption.id == 1) {selected.creator = getLoginName();}
+            var loginName = getLoginName();
+            if($scope.selectedOption.id == 1) {selected.creator = loginName;}
             //nur beim 1. Anlegen (also status = angelegt), soll der creator gesetzt werden
-            selected.currentWorker = $scope.selectedOption.id == 2 ? getLoginName(): null;
+            selected.currentWorker = $scope.selectedOption.id == 2 ? loginName: null;
             //wenn das Ticket in den Status "in Bearbeitung" überführt wird, ist der Bearbeiter = LoginName und sonst null
             selected.changeDateTimestamp = (new Date()).toJSON().slice(0, 10);
             selected.titel = edited.titel;
             selected.description = edited.description;
             selected.commentaryList = edited.commentaryList;
-            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, getLoginName(), (new Date()).toJSON().slice(0, 10));
+            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, loginName, (new Date()).toJSON().slice(0, 10));
             if(edited.commentaryList === undefined) {
                 edited.commentaryList = [];
             }

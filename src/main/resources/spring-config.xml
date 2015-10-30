@@ -71,12 +71,8 @@
 
     <bean id="ticketDAO" class="de.nordakademie.iaa.fehlerverfolgungssystem.dao.TicketDAO"/>
 
-    <bean id="commentaryDAO" class="de.nordakademie.iaa.fehlerverfolgungssystem.dao.CommentaryDAO"/>
-
     <!-- Services -->
     <bean id="ticketService" class="de.nordakademie.iaa.fehlerverfolgungssystem.service.TicketServiceImpl"/>
-
-    <bean id="commentaryService" class="de.nordakademie.iaa.fehlerverfolgungssystem.service.CommentaryServiceImpl"/>
 
     <bean id="developerService" class="de.nordakademie.iaa.fehlerverfolgungssystem.service.DeveloperServiceImpl"/>
 
