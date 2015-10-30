@@ -57,9 +57,9 @@
                 <td>wiederholen:</td>
                 <td><input ng-model="passwordConfirm" type="password" id="passwordConfirmId" name="passwordConfirm" ng-model="regModel.passwordConfirm" required/></td>
                 <td>
-                  <span class="error" ng-show="regForm.passwordConfirm.$invalid">
-                    {{regController.getErrorMessage(regForm.passwordConfirm)}}
-                  </span>
+                  <span class="error" ng-show="regController.checkPassword()">
+                       <font color="red"> Passwörter stimmen nicht überein! </font>
+                   </span>
                 </td>
             </tr>
 
@@ -71,14 +71,6 @@
                            ng-disabled="regForm.$invalid || regController.checkPassword()"
                            ng-click="regController.saveDeveloper(regForm)"
                            onclick="location.href='ticket/mainScreen.html'" value="Registrieren"/></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td colspan="2">
-                    <span class="error" ng-show="regController.checkPassword()">
-                       <font color="red"> Passwörter stimmen nicht überein! </font>
-                   </span>
-                </td>
             </tr>
 
         </table>

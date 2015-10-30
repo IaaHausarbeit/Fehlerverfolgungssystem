@@ -50,34 +50,25 @@
                 <td><textarea ng-disabled="!formModel.isEdit" id="commentaryID" rows="4" cols="25"></textarea></td>
             </tr>
 
-            <tr>
-                <td>
-                    <select data-ng-options="stateOption.name for stateOption in stateOptions" data-ng-model="selectedOption"></select>
-                </td>
-                <td>
-                    <input type="submit" value="best&auml;tigen"
-                           ng-disabled="ticketForm.$invalid || ticketForm.$pristine || formController.checkRole() || formController.checkStatus()"
-                           ng-click="formController.saveTicket(ticketForm)"/>
-                    <!--checkRole disabled den Button, falls derjenige nicht bearbeiten darf.-->
-                </td>
 
-            </tr>
             <tr>
                 <td></td>
-                <td>
-                   <span class="error" ng-show="formController.checkRole()">
-                       <font color="red"> Sie besitzen nicht die nötige Berechtigung!</font>
-                   </span>
+                <td colspan="2">
+                    <input type="submit" value="angelegt" ng-disabled="ticketForm.$invalid" ng-show="formController.checkAngelegt()"
+                           ng-click="formController.saveTicket(ticketForm, 0)"/>
+                    <input type="submit" value="in Bearbeitung" ng-show="formController.checkBearbeitung()"
+                           ng-click="formController.saveTicket(ticketForm, 1)"/>
+                    <input type="submit" value="behoben" ng-show="formController.checkBehAbg() && formController.checkRole()"
+                           ng-click="formController.saveTicket(ticketForm, 2)"/>
+                    <input type="submit" value="abgelehnt" ng-show="formController.checkBehAbg() && formController.checkRole()"
+                           ng-click="formController.saveTicket(ticketForm, 3)"/>
+                    <input type="submit" value="wiedereröffnet" ng-show="formController.checkWieGes() && formController.checkRole()"
+                           ng-click="formController.saveTicket(ticketForm, 4)"/>
+                    <input type="submit" value="geschlossen" ng-show="formController.checkWieGes() && formController.checkRole()"
+                           ng-click="formController.saveTicket(ticketForm, 5)"/>
                 </td>
             </tr>
-            <tr>
-                <td></td>
-                <td>
-                   <span class="error" ng-show="formController.checkStatus()">
-                        <font color="red"> Bitte wählen Sie den Status gemäß des Workflows aus! </font>
-                   </span>
-                </td>
-            </tr>
+
 
         </table>
 

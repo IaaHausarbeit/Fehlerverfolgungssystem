@@ -171,38 +171,35 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
     this.checkRole = function() {
         var selected = $scope.model.selectedTicket;
         //wenn Ticket in Bearbeitung und angemeldeter User nicht Bearbeiter
-        if(selected.status == "IN_BEARBEITUNG" && selected.currentWorker != getLoginName()){
+        if(selected.status == "IN_BEARBEITUNG" && selected.currentWorker == getLoginName()){
             return true;
         }
         //wenn Ticket behoben oder abgelehnt und angemeldeter User nicht Autor
-        if((selected.status == "BEHOBEN" || selected.status == "ABGELEHNT") && selected.creator != getLoginName()){
+        if((selected.status == "BEHOBEN" || selected.status == "ABGELEHNT") && selected.creator == getLoginName()){
             return true;
         }
     };
 
     /**
-     * Nur die richtige Rolle darf bearbeiten, sonst ist der Button disabled.
+     * Buttons visible machen.
      */
-    this.checkStatus = function() {
-        var selected = $scope.model.selectedTicket;
-       // Beim Anlegen ist er null.
-        if(selected.status == null && $scope.selectedOption.id != 1){
-           return true;
-        }
-        if(selected.status == "ANGELEGT" && $scope.selectedOption.id != 2){
+    this.checkAngelegt = function(){
+        if($scope.model.selectedTicket.status == null){
             return true;
         }
-
-        if(selected.status == "IN_BEARBEITUNG" && ($scope.selectedOption.id != 3 && $scope.selectedOption.id != 4)){
+    };
+    this.checkBearbeitung = function(){
+        if($scope.model.selectedTicket.status == "ANGELEGT" || $scope.model.selectedTicket.status == "WIEDEREROEFFNET"){
             return true;
         }
-        if((selected.status == "BEHOBEN" || selected.status == "ABGELEHNT") && ($scope.selectedOption.id != 5 && $scope.selectedOption.id != 6) ){
+    };
+    this.checkBehAbg = function(){
+        if($scope.model.selectedTicket.status == "IN_BEARBEITUNG"){
             return true;
         }
-        if(selected.status == "WIEDEREROEFFNET" && $scope.selectedOption.id != 2){
-            return true;
-        }
-        if(selected.status == "GESCHLOSSEN"){
+    };
+    this.checkWieGes = function(){
+        if($scope.model.selectedTicket.status == "BEHOBEN" || $scope.model.selectedTicket.status == "ABGELEHNT"){
             return true;
         }
     };
@@ -212,18 +209,18 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
      * Speichern
      * @param editForm
      */
-    this.saveTicket = function (editForm) {
+    this.saveTicket = function (editForm, status) {
         var selected = $scope.model.selectedTicket;
         var edited = $scope.formModel.formTicket;
         if (editForm.$valid && selected && edited) {
             selected.id = edited.id;
-            //nicht von der selectedOption, sondern vom Button...der noch zu implementieren ist!
-            //Button dann je nach status show/hide
-            selected.status = $scope.selectedOption.id - 1;
-            if($scope.selectedOption.id == 1) {selected.creator = getLoginName();}
+
+            selected.status = status;
             //nur beim 1. Anlegen (also status = angelegt), soll der creator gesetzt werden
-            selected.currentWorker = $scope.selectedOption.id == 2 ? getLoginName(): null;
+            if(status == 0) {selected.creator = getLoginName();}
             //wenn das Ticket in den Status "in Bearbeitung" überführt wird, ist der Bearbeiter = LoginName und sonst null
+            selected.currentWorker = status == 1? getLoginName(): null;
+
             selected.changeDateTimestamp = (new Date()).toJSON().slice(0, 10);
             selected.titel = edited.titel;
             selected.description = edited.description;
