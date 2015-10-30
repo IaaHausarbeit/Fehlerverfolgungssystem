@@ -24,7 +24,7 @@ public class Commentary implements Serializable{
     /**
      * Datum des Kommentars
      */
-    private Date date;
+    private Date date = new Date();
 
     /**
      * Kommentartext
@@ -68,7 +68,6 @@ public class Commentary implements Serializable{
     }
 
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
     public Date getDate() {
         return date;
     }

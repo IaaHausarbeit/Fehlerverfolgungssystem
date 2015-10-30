@@ -46,6 +46,12 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
     $scope.sortType     = 'number'; // set the default sort type
     $scope.sortReverse  = false;  // set the default sort order
 
+    $scope.date_conversion = function (date){
+        var myDate = new Date(date);
+        date = myDate.toLocaleString();
+        return date;
+    };
+
     /**
      * Startet die Bearbeitung
      * @param selected
@@ -143,6 +149,12 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
         }
     };
 
+    $scope.date_conversion = function (date){
+        var myDate = new Date(date);
+        date = myDate.toLocaleString();
+        return date;
+    };
+
     // das model
     $scope.formModel = {
         isEdit: $scope.model.selectedTicket.titel && $scope.model.selectedTicket.description,
@@ -217,11 +229,11 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
             //wenn das Ticket in den Status "in Bearbeitung" überführt wird, ist der Bearbeiter = LoginName und sonst null
             selected.currentWorker = status == 1? loginName: null;
 
-            selected.changeDateTimestamp = (new Date()).toJSON().slice(0, 10);
+            selected.changeDateTimestamp = new Date();
             selected.titel = edited.titel;
             selected.description = edited.description;
             selected.commentaryList = edited.commentaryList;
-            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, loginName, (new Date()).toJSON().slice(0, 10));
+            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, loginName, new Date());
             if(edited.commentaryList === undefined) {
                 edited.commentaryList = [];
             }

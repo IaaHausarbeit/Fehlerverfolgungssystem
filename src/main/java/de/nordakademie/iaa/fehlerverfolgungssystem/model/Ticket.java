@@ -94,7 +94,6 @@ public class Ticket implements Serializable {
     }
 
     @Column
-    @Temporal(TemporalType.DATE)
     public Date getChangeDateTimestamp() {
         return changeDateTimestamp;
     }
@@ -139,7 +138,6 @@ public class Ticket implements Serializable {
         this.currentWorker = currentWorker;
     }
 
-    @Temporal(TemporalType.DATE)
     @Column
     public Date getCreateDateTimestamp() {
         return createDateTimestamp;

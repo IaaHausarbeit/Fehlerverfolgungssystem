@@ -86,9 +86,9 @@
                 <th>Autor</th>
                 <th>Kommentar</th>
             </tr>
-            <tr ng-repeat="commentary in formModel.formTicket.commentaryList | orderBy:['date']:sortType:sortReverse">
+            <tr ng-repeat="commentary in formModel.formTicket.commentaryList | orderBy:['date']:sortType">
                 <!-- chronologisch aufsteigend bedeutet für uns: der neuese Kommentar zuerst-->
-                <td>{{commentary.date}}</td>
+                <td>{{date_conversion(commentary.date)}}</td>
                 <td>{{commentary.creator}}</td>
                 <td>{{commentary.text}}</td>
             </tr>
