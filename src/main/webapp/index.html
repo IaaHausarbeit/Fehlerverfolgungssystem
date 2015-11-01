@@ -65,13 +65,13 @@
             </tr>
 
             <tr>
-                <td><input type="submit" onclick="location.href='ticket/mainScreen.html'" value="zum Login"/></td>
-
                 <!--//TODO: prüfen, ob Benutzername noch nicht vergeben und PW = PW-->
                 <td><input type="submit"
                            ng-disabled="regForm.$invalid || regController.checkPassword()"
                            ng-click="regController.saveDeveloper(regForm)"
                            onclick="location.href='ticket/mainScreen.html'" value="Registrieren"/></td>
+
+                <td><input type="submit" onclick="location.href='ticket/mainScreen.html'" value="zum Login"/></td>
             </tr>
 
         </table>
