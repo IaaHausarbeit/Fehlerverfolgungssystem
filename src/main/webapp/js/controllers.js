@@ -128,8 +128,6 @@ controllers.controller('regController', ['$scope', 'Developer', 'developerServic
      * Stimmen die Passwörter überein?
      */
     this.checkPassword = function (){
-        console.log(document.getElementById("passwordConfirmId").value);
-        console.log(document.getElementById("passwordId").value);
         if(document.getElementById("passwordConfirmId").value != document.getElementById("passwordId").value){
             return true;
         }
