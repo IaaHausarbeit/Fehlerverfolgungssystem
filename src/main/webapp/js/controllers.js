@@ -46,6 +46,19 @@ controllers.controller('listController', ['$scope', 'Ticket', 'ticketService', f
     $scope.sortType     = 'number'; // set the default sort type
     $scope.sortReverse  = false;  // set the default sort order
 
+    //leer, wenn alle angezeigt werden sollen, ansonsten steht hier GESCHLOSSEN drin
+    var showClosed = "";
+
+    $scope.filterFn = function(ticket) {
+       return ticket.status != showClosed;
+
+    };
+
+    this.showHide = function(){
+          //wenn leer, dann GESCHLOSSEN reinschreiben, sonst eben wieder leeren
+        showClosed = showClosed == "" ? "GESCHLOSSEN" : "";
+    };
+
     $scope.date_conversion = function (date){
         var myDate = new Date(date);
         date = myDate.toLocaleString();

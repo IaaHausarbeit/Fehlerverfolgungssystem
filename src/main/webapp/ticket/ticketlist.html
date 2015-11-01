@@ -17,6 +17,7 @@
             <div class="form-group">
                 <div class="btn-group">
                     <input type="submit" value="anlegen" ng-click="listController.newTicket()"/>
+                    <input type="button" ng-click="listController.showHide()" value="Geschlossene Tickets ein-/ ausblenden" />
                 </div>
                 <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-search"></i></div>
@@ -90,7 +91,7 @@
             </thead>
 
             <tbody>
-            <tr ng-repeat="ticket in model.tickets | orderBy:sortType:sortReverse | filter:searchTickets"
+            <tr ng-repeat="ticket in model.tickets | orderBy:sortType:sortReverse | filter:searchTickets | filter:filterFn" class="result"
                 ng-dblclick="listController.editTicket(ticket)"
                 ng-class="{selectedTicket:(ticket == model.selectedTicket)}">
 
