@@ -244,11 +244,14 @@ controllers.controller('formController', ['$scope', 'Ticket', 'ticketService', '
             selected.titel = edited.titel;
             selected.description = edited.description;
             selected.commentaryList = edited.commentaryList;
-            var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, loginName, new Date());
-            if(edited.commentaryList === undefined) {
-                edited.commentaryList = [];
+            //wenn der Kommentar leer ist, dann soll auch kein neuer angelegt werden
+            if( document.getElementById("commentaryID").value != ""){
+                var commentary = new Commentary(edited.id, document.getElementById("commentaryID").value, loginName, new Date());
+                if(edited.commentaryList === undefined) {
+                    edited.commentaryList = [];
+                }
+                edited.commentaryList.push(commentary);
             }
-            edited.commentaryList.push(commentary);
 
             // do save data
             ticketService.saveTicketWithPromise(selected)
