@@ -47,7 +47,8 @@
             </tr>
             <tr>
                 <td>Passwort:</td>
-                <td><input ng-model="password" type="password" id="passwordId" name="password" ng-model="regModel.password" required/></td>
+                <td><input ng-model="password" type="password" id="passwordId" name="password"
+                           ng-model="regModel.password" required/></td>
                 <td>
                   <span class="error" ng-show="regForm.password.$invalid">
                     {{regController.getErrorMessage(regForm.password)}}
@@ -56,7 +57,8 @@
             </tr>
             <tr>
                 <td>wiederholen:</td>
-                <td><input ng-model="passwordConfirm" type="password" id="passwordConfirmId" name="passwordConfirm" ng-model="regModel.passwordConfirm" required/></td>
+                <td><input ng-model="passwordConfirm" type="password" id="passwordConfirmId" name="passwordConfirm"
+                           ng-model="regModel.passwordConfirm" required/></td>
                 <td>
                   <span class="error" ng-show="regController.checkPassword()">
                        <font color="red"> Passwörter stimmen nicht überein! </font>

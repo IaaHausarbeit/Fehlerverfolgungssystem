@@ -35,11 +35,13 @@
 
             <tr>
                 <td>Autor:</td>
-                <td><label name="creator" ng-model="formModel.formTicket.creator">{{formModel.formTicket.creator}}</label></td>
+                <td><label name="creator"
+                           ng-model="formModel.formTicket.creator">{{formModel.formTicket.creator}}</label></td>
             </tr>
             <tr>
                 <td>Bearbeiter:</td>
-                <td><label ng-model="formModel.formTicket.currentWorker">{{formModel.formTicket.currentWorker}}</label></td>
+                <td><label ng-model="formModel.formTicket.currentWorker">{{formModel.formTicket.currentWorker}}</label>
+                </td>
             </tr>
             <tr>
                 <td>Status:</td>
@@ -54,17 +56,22 @@
             <tr>
                 <td></td>
                 <td colspan="2">
-                    <input type="submit" value="angelegt" ng-disabled="ticketForm.$invalid" ng-show="formController.checkAngelegt()"
+                    <input type="submit" value="angelegt" ng-disabled="ticketForm.$invalid"
+                           ng-show="formController.checkAngelegt()"
                            ng-click="formController.saveTicket(ticketForm, 0)"/>
                     <input type="submit" value="in Bearbeitung" ng-show="formController.checkBearbeitung()"
                            ng-click="formController.saveTicket(ticketForm, 1)"/>
-                    <input type="submit" value="behoben" ng-show="formController.checkBehAbg() && formController.checkRole()"
+                    <input type="submit" value="behoben"
+                           ng-show="formController.checkBehAbg() && formController.checkRole()"
                            ng-click="formController.saveTicket(ticketForm, 2)"/>
-                    <input type="submit" value="abgelehnt" ng-show="formController.checkBehAbg() && formController.checkRole()"
+                    <input type="submit" value="abgelehnt"
+                           ng-show="formController.checkBehAbg() && formController.checkRole()"
                            ng-click="formController.saveTicket(ticketForm, 3)"/>
-                    <input type="submit" value="wiedereröffnet" ng-show="formController.checkWieGes() && formController.checkRole()"
+                    <input type="submit" value="wiedereröffnet"
+                           ng-show="formController.checkWieGes() && formController.checkRole()"
                            ng-click="formController.saveTicket(ticketForm, 4)"/>
-                    <input type="submit" value="geschlossen" ng-show="formController.checkWieGes() && formController.checkRole()"
+                    <input type="submit" value="geschlossen"
+                           ng-show="formController.checkWieGes() && formController.checkRole()"
                            ng-click="formController.saveTicket(ticketForm, 5)"/>
                 </td>
             </tr>
@@ -87,7 +94,7 @@
                 <th>Kommentar</th>
             </tr>
             <tr ng-repeat="commentary in formModel.formTicket.commentaryList | orderBy: 'date'">
-                <!-- chronologisch aufsteigend bedeutet für uns: der neuese Kommentar zuerst-->
+                <!-- chronologisch aufsteigend bedeutet für uns: oben alt, unten neu-->
                 <td>{{date_conversion(commentary.date)}}</td>
                 <td>{{commentary.creator}}</td>
                 <td>{{commentary.text}}</td>

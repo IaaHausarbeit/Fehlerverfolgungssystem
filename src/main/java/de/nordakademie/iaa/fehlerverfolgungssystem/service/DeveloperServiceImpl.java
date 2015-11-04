@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
+ * Implementation des Developer Services
+ * ruft eigentlich nur die DAOS auf
  * Created by Paul on 23.10.2015.
  */
 public class DeveloperServiceImpl implements DeveloperService {
@@ -25,11 +27,6 @@ public class DeveloperServiceImpl implements DeveloperService {
         } catch (ConstraintViolationException e) {
             throw new EntityAlreadyPresentException();
         }
-    }
-
-    @Override
-    public List<Developer> listDeveloper() {
-        return developerDAO.findAll();
     }
 
     @Override

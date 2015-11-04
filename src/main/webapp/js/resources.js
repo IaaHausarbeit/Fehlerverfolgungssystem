@@ -6,7 +6,8 @@
 var resources = angular.module('resources', []);
 
 resources.factory('Ticket', function () {
-    return function (id, titel, status, description, creator, currentWorker,createDateTimestamp, changeDateTimestamp, commentaryList) {
+    return function (id, titel, status, description, creator, currentWorker,createDateTimestamp, changeDateTimestamp,
+                     commentaryList) {
         this.id = id;
         this.titel = titel;
         this.status = status;

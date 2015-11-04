@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
+ * Implementiernung des TicketSerivces
  * Created by Paul on 23.10.2015.
  */
 public class TicketServiceImpl implements TicketService {
@@ -31,10 +32,5 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public List<Ticket> listTickets() {
         return ticketDAO.findAll();
-    }
-
-    @Override
-    public Ticket editTicket(Long id) {
-        return ticketDAO.getTicket(id);
     }
 }

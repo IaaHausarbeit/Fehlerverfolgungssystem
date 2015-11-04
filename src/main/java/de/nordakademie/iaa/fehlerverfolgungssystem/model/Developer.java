@@ -19,7 +19,7 @@ public class Developer implements Serializable{
     private String password;
 
     /**
-     * Name des Enwticklers
+     * Name des Entwicklers
      */
     private String name;
 

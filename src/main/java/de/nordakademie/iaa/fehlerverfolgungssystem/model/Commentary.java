@@ -10,7 +10,7 @@ import java.util.Date;
  * Klasse für Kommentare an einem Ticket
  */
 @Entity
-public class Commentary implements Serializable{
+public class Commentary implements Serializable {
     private static final long serialVersionUID = 5765278839783831981L;
     private Long id;
 
@@ -39,7 +39,8 @@ public class Commentary implements Serializable{
 
     @JoinColumn(name = "TICKET_ID")
     @JsonIgnore //This way you will no longer have a Json serializing-time circular dependency.
-    // https://stackoverflow.com/questions/26657259/hibernate-and-json-is-there-a-definitive-solution-to-circular-dependencies
+    // https://stackoverflow.com/questions/26657259/hibernate-and-json-is-there-a-definitive-solution-to-circular
+    // -dependencies
     public Ticket getTicket() {
         return ticket;
     }

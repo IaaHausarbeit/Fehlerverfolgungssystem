@@ -16,7 +16,8 @@ http://www.springframework.org/schema/security/spring-security.xsd">
 
     <security:http auto-config="true">
         <security:intercept-url pattern="/ticket/**" access="hasRole('ROLE_ADMIN')"/>
-        <!-- nicht der schönste Weg, das hier abzustellen... andere Möglichkeit wäre gewesen, die Session Cookies bei den Submit-Buttons zu überreichen-->
+        <!-- nicht der schönste Weg, das hier abzustellen... andere Möglichkeit wäre gewesen,
+        die Session Cookies bei den Submit-Buttons zu überreichen-->
         <security:csrf disabled="true"/>
 
         <security:logout logout-url="/logout"/>

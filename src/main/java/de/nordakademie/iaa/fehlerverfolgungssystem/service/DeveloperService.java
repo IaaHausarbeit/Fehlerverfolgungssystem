@@ -5,6 +5,7 @@ import de.nordakademie.iaa.fehlerverfolgungssystem.model.Developer;
 import java.util.List;
 
 /**
+ * Interface für den DeveloperService
  * Created by Paul on 23.10.2015.
  */
 public interface DeveloperService {
@@ -14,12 +15,6 @@ public interface DeveloperService {
      * @throws EntityAlreadyPresentException
      */
     void createDeveloper(Developer developer) throws EntityAlreadyPresentException;
-
-    /**
-     * brauchen wir eigentlich nicht, aber kann ja sein ;)
-     * @return
-     */
-    List<Developer> listDeveloper();
 
     Developer getDeveloper(String nickname);
 

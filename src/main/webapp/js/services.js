@@ -5,7 +5,7 @@
 
 var services = angular.module('services', ['resources']);
 
-// Set up the room service.
+// Set up the ticket service.
 services.service('ticketService', ['$http', function ($http) {
     /**
      * Return all tickets using an asynchronous REST call with promise.
@@ -26,7 +26,7 @@ services.service('ticketService', ['$http', function ($http) {
 
 }]);
 
-// Set up the room service.
+// Set up the developer service.
 services.service('developerService', ['$http', function ($http) {
     /**
      * Saves the developer (registration)

@@ -20,8 +20,8 @@ public class TicketController {
     private TicketService ticketService;
 
     /**
-     * List all existing rooms.
-     * @return the list of rooms.
+     * List all existing tickets.
+     * @return the list of tickets.
      */
     @RequestMapping(value = "/ticketlist", method = RequestMethod.GET)
     public List<Ticket> listTickets() { return ticketService.listTickets(); }
