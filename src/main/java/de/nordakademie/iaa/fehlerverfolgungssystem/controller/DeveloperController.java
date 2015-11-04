@@ -24,7 +24,7 @@ public class DeveloperController {
     }
 
     @Inject
-    public void setTicketService(DeveloperService developerService) {
+    public void setDeveloperService(DeveloperService developerService) {
         this.developerService=developerService;
     }
 }

@@ -19,9 +19,9 @@ public interface DeveloperService {
      * brauchen wir eigentlich nicht, aber kann ja sein ;)
      * @return
      */
-    List<Developer> listTickets();
+    List<Developer> listDeveloper();
 
-    Developer getDeveloper(String id);
+    Developer getDeveloper(String nickname);
 
 
 }

@@ -28,7 +28,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
-    public List<Developer> listTickets() {
+    public List<Developer> listDeveloper() {
         return developerDAO.findAll();
     }
 
