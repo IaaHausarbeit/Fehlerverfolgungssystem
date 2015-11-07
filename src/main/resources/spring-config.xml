@@ -36,6 +36,7 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <!-- der Wert 'create' erzeugt eine völlig leere Datenbank, 'update' ist für den Nutzbaren Einsatz gedacht!-->
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
